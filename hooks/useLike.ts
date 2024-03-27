@@ -12,17 +12,22 @@ interface Props {
 }
 
 const useLike = ({ post, postId, userId }: Props) => {
-  const { data }: any = useSession();
+  const { data: session }:any = useSession();
+  const currentUserId: string | undefined = typeof session?.currentUser?._id === 'string' ? session.currentUser._id : undefined;
+
   const { mutate: mutatePosts } = usePosts(userId as string);
   const { mutate: mutatePost } = usePost(postId as string);
-  const currentUser = data?.currentUser;
-
+   
+ 
   const hasLiked = useMemo(() => {
     const list = post?.likes || [];
+    if (Array.isArray(list)) {
+      return list.some(id => id === currentUserId);
+    }
+    return false;
+  }, [post, currentUserId]);
 
-    return list.includes(currentUser?._id);
-  }, [post, currentUser]);
-
+  
   const toggleLike = useCallback(async () => {
     try {
       let request;
