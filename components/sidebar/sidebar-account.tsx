@@ -35,8 +35,8 @@ const SidebarAccount = ({ user }: Props) => {
                 <AvatarImage src={data?.profileImage}/>
                 <AvatarFallback>{data?.name[0]}</AvatarFallback>
               </Avatar>
-              <div className="flex flex-col items-start">
-                <p className="text-sm  ">{data?.name}</p>
+              <div className="flex flex-col justify-start items-start">
+                <p className="text-sm line-clamp-1 text-start ">{data?.name}</p>
                 {data?.username ? (
                   <p className="text-sm dark:text-zinc-500 text-zinc-600">@{data?.username}</p>
                 ) : (

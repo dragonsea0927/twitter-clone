@@ -19,7 +19,8 @@ const Sidebar = ({ user }: { user: IUser }) => {
       label: "Notifications",
       path: `/notifications`,
       icon: Bell,
-      notification: true,
+      notification: false,
+      disable:true
     },
     {
       label: "Profile",

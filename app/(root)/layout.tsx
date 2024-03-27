@@ -6,8 +6,15 @@ import { authOptions } from "@/lib/auth-options";
 import { Toaster } from "@/components/ui/toaster";
 import NextTopLoader from 'nextjs-toploader'
 import FollowBar from "@/components/shared/follow-bar";
+import { Metadata } from "next";
+
 interface Props {
   children: React.ReactNode;
+}
+
+export const metadata: Metadata = {
+  title: 'Twitter clone',
+  description: 'Nextjs 14 twitter clone',
 }
 
 const Layout = async ({ children }: Props) => {

@@ -96,10 +96,10 @@ const PostItem = ({ post, userId }: Props) => {
                 <p className=" font-semibold cursor-pointer hover:underline">
                   {post?.user?.name}
                 </p>
-                <span className=" cursor-pointer hidden md:block">
+                <span className=" cursor-pointer hidden md:block text-sm dark:text-zinc-400">
                   @{post?.user?.username}
                 </span>
-                <span className=" text-sm">{createdAt} ago</span>
+                <span className="text-sm dark:text-zinc-500">{createdAt} ago</span>
               </div>
             </div>
 

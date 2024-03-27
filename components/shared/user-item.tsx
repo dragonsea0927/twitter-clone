@@ -46,7 +46,7 @@ const UserItem = ({ user }: { user: IUser }) => {
           <div className="flex flex-col line-clamp-1">
             <p className=" font-semibold text-sm line-clamp-1">{user.name}</p>
             <p className="line-clamp-1 overflow-hidden text-sm dark:text-zinc-500 text-zinc-600">
-              {user.username ? `@${user.username}` : `${user.email}`}
+              {user.username ? `@${user.username}` : ``}
             </p>
           </div>
         </div>
