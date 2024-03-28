@@ -95,7 +95,7 @@ const LoginModal = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Password" {...field} />
+                  <Input placeholder="Password" type="password" {...field} />
                 </FormControl>
 
                 <FormMessage />
