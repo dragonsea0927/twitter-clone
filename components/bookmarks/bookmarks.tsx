@@ -1,0 +1,49 @@
+'use client'
+import { useSession } from "next-auth/react";
+import React from "react";
+import { useTweets } from "../tweets/hooks/use-tweets";
+import { InfiniteTweets } from "../tweets/infinite-tweet";
+import NoBookmarks from "./no-bookmarks";
+import LoadingSpinner from "../elements/loading/loading-spinner";
+
+const Bookmarks = () => {
+  const { data: session }: any = useSession();
+
+  const {
+    
+    data: bookmarks,
+    isLoading,
+    isError,
+    isSuccess,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+
+  } = useTweets({
+    queryKey: ["bookmarks", session?.currentUser?.id],
+    type: "bookmarks",
+    id: session?.currentUser?.id,
+  });
+
+  if(isLoading){
+    return <LoadingSpinner/>
+  }
+
+  return (
+    <div>
+      {isSuccess && bookmarks?.pages[0]?.tweets?.length === 0 ? (
+          <NoBookmarks/>
+      ):(
+        <InfiniteTweets 
+          tweets={bookmarks}
+          isFetchingNextPage={isFetchingNextPage}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+          isSuccess={isSuccess}
+        />
+      )}
+    </div>
+  );
+};
+
+export default Bookmarks;

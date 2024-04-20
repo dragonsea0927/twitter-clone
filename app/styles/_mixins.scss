@@ -1,0 +1,13 @@
+@mixin mq($breakpoint) {
+    @if $breakpoint == "small" {
+      @media (min-width: 500px) { @content; }
+    } @else if $breakpoint == "medium" {
+      @media (min-width: 700px) { @content; }
+    } @else if $breakpoint == "large" {
+      @media (min-width: 1020px) { @content; }
+    } @else if $breakpoint == "x-large" {
+      @media (min-width: 1120px) { @content; }
+    } @else if $breakpoint == "xx-large" {
+      @media (min-width: 1300px) { @content; }
+    }
+  }

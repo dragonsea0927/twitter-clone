@@ -1,32 +1,35 @@
-"use client";
-import PostItem from "@/components/post/post-item";
-import ProfileBio from "@/components/profile/profile-bio";
-import ProfileHero from "@/components/profile/profile-hero";
-import Header from "@/components/shared/header";
-import usePosts from "@/hooks/usePosts";
-import useUser from "@/hooks/useUser";
-import { IPost } from "@/types";
-import React, { useEffect, useState } from "react";
-
+ 
+import ProfileHeader from "@/components/header/profile-header";
+import { getUserMetadata } from "@/components/profile/api/get-user-metadata";
+import Profile from "@/components/profile/profile";
+import ProfileTweets from "@/components/profile/profile-tweets";
+ 
 interface Props {
   userId: string;
 }
 
-const page = ({ params }: { params: Props }) => {
-  const { userId } = params;
+const page = async ({ params }: { params: Props }) => {
 
-  const { data, mutate: mutateUser } = useUser({ userId });
-  const { data: posts = [] } = usePosts(userId);
+  const user = await getUserMetadata({
+    user_id: params.userId,
+    type: "tweets",
+  });
 
+
+  console.log('USER META DATA',user);
+  
+  if (!user) return <p>NOT FOUND</p>;
 
   return (
     <>
-      <Header label={data?.name} isBack tweets={posts?.length} subLabel />
-      <ProfileHero user={data} />
-      <ProfileBio data={data} />
-      {posts.map((post: IPost) => (
-        <PostItem post={post} key={post._id} userId={userId} />
-      ))}
+      <ProfileHeader
+        heading={user.name ?? undefined}
+        stats={`${user?._count?.posts} ${
+          user?._count?.posts === 1 ? "tweet" : "tweets"
+        }`}
+      />
+      <Profile initialUser={user as any} />
+      <ProfileTweets />
     </>
   );
 };

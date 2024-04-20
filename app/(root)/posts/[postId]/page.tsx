@@ -1,29 +1,20 @@
-"use client";
-import CommentFeed from "@/components/post/comment-feed";
-import PostItem from "@/components/post/post-item";
-import Header from "@/components/shared/header";
-import Tweet from "@/components/shared/tweet-form";
+ 
+import { TweetHeader } from "@/components/header/tweet-header";
+import { getTweetMetadata } from "@/components/tweets/api/getTweetMetadata";
+import TweetDetails from "@/components/tweets/tweet-details";
+ 
 
-import usePost from "@/hooks/usePost";
-
-import { useSession } from "next-auth/react";
-
-const page = ({ params }: { params: { postId: string } }) => {
-  const { data: session }: any = useSession();
-  const postId = params.postId;
-  const { data: post } = usePost(postId);
+const page = async ({ params }: { params: { postId: string } }) => {
+ 
+  const initialTweet = await getTweetMetadata({
+    tweet_id: params.postId,
+  });
 
   return (
     <>
-      <Header label="Tweet" isBack />
-      <PostItem post={post} />
-      <Tweet
-        retweet
-        placeholder="Post your reply"
-        postId={postId as string}
-        user={session?.currentUser}
-      />
-      <CommentFeed comments={post?.comments} />
+      <TweetHeader/>
+      <TweetDetails initialTweet={initialTweet as any} />
+      
     </>
   );
 };

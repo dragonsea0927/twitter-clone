@@ -2,15 +2,22 @@ import Post from "@/database/post.model";
 import { authOptions } from "@/lib/auth-options";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import prisma from "@/lib/prismadb";
 
 export async function PUT(req: Request) {
   try {
-    const { currentUser }: any = await getServerSession(authOptions);
+    const { postId, userId } = (await req.json()) as {
+      postId: string;
+      userId: string;
+    };
 
-    const { postId } = await req.json();
-
-    await Post.findByIdAndUpdate(postId, {
-      $push: { likes: currentUser._id },
+    await prisma.post.update({
+      where: { id: postId },
+      data: {
+        likedIds: {
+          push: userId,
+        },
+      },
     });
 
     return NextResponse.json({ success: true });
@@ -22,17 +29,20 @@ export async function PUT(req: Request) {
 
 export async function DELETE(req: Request) {
   try {
-    const { currentUser }: any = await getServerSession(authOptions);
-    const { postId } = await req.json();
+    const { postId, userId } = (await req.json()) as {
+      postId: string;
+      userId: string;
+    };
 
-   await Post.findByIdAndUpdate(
-      postId,
-      {
-        $pull: { likes: currentUser._id },
+    await prisma.post.update({
+      where: { id: postId },
+      data: {
+        likedIds: {
+        
+        },
       },
-      { new: true }
-    );
-
+    });
+  
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
     const result = error as Error;

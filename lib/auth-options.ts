@@ -1,12 +1,12 @@
-import { AuthOptions } from "next-auth";
-import { connectToDatabase } from "./mongoose";
-import User from "@/database/user.model";
-
+import { AuthOptions } from "next-auth";  
+import prisma from "@/lib/prismadb";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: AuthOptions = {
+  adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -15,10 +15,11 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        await connectToDatabase();
-
-        const user = await User.findOne({
-          email: credentials?.email,
+        
+        const user = await prisma.user.findUnique({
+          where: {
+            email: credentials?.email,
+          },
         });
 
         return user;
@@ -35,15 +36,19 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async session({ session }: any) {
-      await connectToDatabase();
+     
 
-      const isExistingUser = await User.findOne({ email: session.user.email });
+      const isExistingUser = await prisma.user.findUnique({
+        where: { email: session.user.email },
+      });
 
       if (!isExistingUser) {
-        const newUser = await User.create({
-          email: session.user.email,
-          name: session.user.name,
-          profileImage: session.user.image,
+        const newUser = await prisma.user.create({
+          data: {
+            email: session.user.email,
+            name: session.user.name,
+            profileImage: session.user.image,
+          },
         });
 
         session.currentUser = newUser;

@@ -1,14 +1,16 @@
-import User from "@/database/user.model";
-import { connectToDatabase } from "@/lib/mongoose";
 import { compare } from "bcrypt";
 import { NextResponse } from "next/server";
+import prisma from "@/lib/prismadb"; 
 
 export async function POST(req: Request) {
   try {
-    await connectToDatabase();
     const { email, password } = await req.json();
 
-    const isExistingUser = await User.findOne({ email });
+    const isExistingUser: any = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
 
     if (!isExistingUser) {
       return NextResponse.json(

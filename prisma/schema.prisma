@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String?
+  username     String?  @unique
+  bio          String?
+  email        String?  @unique
+  location     String?
+  coverImage   String?
+  profileImage String?
+  password     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  hasNewNotifications Boolean?
+
+  posts Post[]
+  Like  Like[]
+
+  userId String? @db.ObjectId
+
+  followers    User[]      @relation("Followers", fields: [followersIds], references: [id])
+  followersIds String[]    @db.ObjectId
+  following    User[]      @relation("Followers", fields: [followingIds], references: [id])
+  followingIds String[]    @db.ObjectId
+  Bookmarks    Bookmarks[]
+}
+
+model Post {
+  id                      String   @id @default(auto()) @map("_id") @db.ObjectId
+  body                    String
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+  userId                  String   @db.ObjectId
+  likedIds                String[] @db.ObjectId
+  in_reply_to_screen_name String?
+  in_reply_to_tweet_id    String?  @db.ObjectId
+  image                   String?
+  favorite_count          Int      @default(0)
+  user                    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  media         Media[]
+  tweet_comment Post?   @relation("tweet-comment", fields: [in_reply_to_tweet_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  comments      Post[]  @relation("tweet-comment")
+
+  likes     Like[]
+  Bookmarks Bookmarks[]
+}
+
+model Media {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  media_url  String
+  media_type String
+  media_path String
+  tweet_id   String? @db.ObjectId
+  tweet      Post?   @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
+}
+
+model Like {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  postId     String   @db.ObjectId
+  userId     String   @db.ObjectId
+  created_at DateTime @default(now())
+  tweet      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model Bookmarks {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  postId     String   @db.ObjectId
+  userId     String   @db.ObjectId
+  created_at DateTime @default(now())
+  tweet      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model Hashtag {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  text       String
+  hashtag    String   @unique
+  score      Int      @default(1)
+  created_at DateTime @default(now())
+}

@@ -2,28 +2,45 @@ import Comment from "@/database/comment.model";
 import Post from "@/database/post.model";
 import User from "@/database/user.model";
 import { NextResponse } from "next/server";
+import prisma from "@/lib/prismadb";
 
 export async function GET(req: Request, route: { params: { postId: string } }) {
   try {
     const { postId } = route.params;
 
-    const post = await Post.findById(postId)
-      .populate({
-        path: "user",
-        model: User,
-        select: "name email profileImage _id username",
-      })
-      .populate({
-        path: "comments",
-        model: Comment,
-        select: "body _id createdAt ",
-        options: { sort: { createdAt: -1 } },
-        populate: {
-          path: "user",
-          model: User,
-          select: "name username _id profileImage", 
+    const post = await prisma.post.findUnique({
+      where: { id: postId },
+      select: {
+        id:true,
+        body:true,
+        createdAt:true,
+        userId: true,
+
+        user:{
+          select:{
+            id:true,
+            name: true,
+            email: true,
+            profileImage: true
+          }
         },
-      });
+
+        likes: {
+          select: {
+            userId: true,
+          },
+        },
+
+        _count: {
+          select: {
+            likes: true,
+          },
+        },
+      },
+    });
+
+  
+    
 
     return NextResponse.json(post);
   } catch (error) {

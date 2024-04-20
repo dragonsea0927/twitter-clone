@@ -42,10 +42,10 @@ const Modal = ({
       </DialogTrigger> */}
       <DialogContent
         className={cn(
-          "sm:max-w-[425px]",
+          "sm:max-w-[425px] rounded-md",
           isEditing && "h-[80vh] overflow-x-hidden overflow-y-auto"
-        )}
-      >
+        )}>
+          
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>

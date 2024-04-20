@@ -1,18 +1,18 @@
-import Post from "@/database/post.model";
-import User from "@/database/user.model";
-import { authOptions } from "@/lib/auth-options";
-import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import prisma from "@/lib/prismadb";
 
 export async function POST(req: Request) {
   try {
-    const { body } = await req.json();
+    const { body, userId } = (await req.json()) as {
+      body: string;
+      userId: string;
+    };
 
-    const { currentUser }: any = await getServerSession(authOptions);
-
-    const post = await Post.create({
-      body,
-      user: currentUser._id,
+    const post = await prisma.post.create({
+      data: {
+        body,
+        userId,
+      },
     });
 
     return NextResponse.json(post);
@@ -25,18 +25,56 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
+    const userId = searchParams.get("userId") || undefined;
 
-    const userId = searchParams.get("userId");
+    let posts;
+    if (userId) {
+      posts = await prisma.post.findMany({
+        where: { userId },
+        include: {
+          user: {
+            select: {
+              name: true,
+              email: true,
+              profileImage: true,
+              id: true,
+              username: true,
+            },
+          },
+        },
+      });
+    } else {
+      posts = await prisma.post.findMany({
+        select: {
+          id:true,
+          body:true,
+          createdAt:true,
+          userId: true,
+          image:true,
 
-    const query = userId ? { user: userId } : {};
+          user:{
+            select:{
+              id:true,
+              name: true,
+              email: true,
+              profileImage: true
+            }
+          },
 
-    const posts = await Post.find(query)
-      .populate({
-        path: "user",
-        model: User,
-        select: "name email profileImage _id username",
-      })
-      .sort({ createdAt: -1 });
+          likes: {
+            select: {
+              userId: true,
+            },
+          },
+
+          _count: {
+            select: {
+              likes: true,
+            },
+          },
+        },
+      });
+    }
 
     return NextResponse.json(posts);
   } catch (error) {

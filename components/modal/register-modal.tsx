@@ -88,6 +88,8 @@ function RegisterStep1({
   async function onSubmit(values: z.infer<typeof registerStep1Schema>) {
     try {
       const { data } = await axios.post("/api/auth/register?step=1", values);
+ 
+
       if (data.success) {
         setData(values);
         setStep(2);
@@ -159,17 +161,22 @@ function RegisterStep2({ data }: { data: { name: string; email: string } }) {
 
   async function onSubmit(values: z.infer<typeof registerStep2Schema>) {
     try {
-      const { data: response } = await axios.post("/api/auth/register?step=2", {
-        ...data,
-        ...values,
-      });
-      if (response.success) {
+      const { data: response, status } = await axios.post(
+        "/api/auth/register?step=2",
+        {
+          ...data,
+          ...values,
+        }
+      );
+
+      if (status === 200) {
         signIn("credentials", {
           email: data.email,
           password: values.password,
         });
         registerModal.onClose();
       }
+      
     } catch (error: any) {
       if (error.response.data.error) {
         setError(error.response.data.error);

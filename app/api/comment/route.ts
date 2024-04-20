@@ -8,7 +8,6 @@ export async function POST(req: Request) {
   try {
     const { body, postId } = await req.json();
 
-
     const { currentUser }: any = await getServerSession(authOptions);
 
     const comment = await Comment.create({
