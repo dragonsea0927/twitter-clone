@@ -1,5 +1,5 @@
  
-import { ITweet } from "@/components/post/types";
+import { ITweet } from "@/components/tweets/types";
 import { User, Like } from "@prisma/client";
 
 export interface IUser extends User{

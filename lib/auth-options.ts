@@ -36,8 +36,7 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async session({ session }: any) {
-     
-
+    
       const isExistingUser = await prisma.user.findUnique({
         where: { email: session.user.email },
       });

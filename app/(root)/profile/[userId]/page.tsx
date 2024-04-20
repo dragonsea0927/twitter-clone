@@ -15,8 +15,7 @@ const page = async ({ params }: { params: Props }) => {
     type: "tweets",
   });
 
-
-  console.log('USER META DATA',user);
+ 
   
   if (!user) return <p>NOT FOUND</p>;
 

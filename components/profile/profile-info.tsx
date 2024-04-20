@@ -17,8 +17,7 @@ const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
   const { data: session }: any = useSession();
 
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
-
-  console.log('Following IDS', user);
+ 
   
   const isFollowing = following({
     user: user,
