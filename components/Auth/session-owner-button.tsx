@@ -1,9 +1,7 @@
-import React, { useRef, useState } from "react";
-import { Button } from "../ui/button";
+import React  from "react"; 
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { signOut, useSession } from "next-auth/react";
-import { EllipsisWrapper } from "../elements/ellipsis-wrapper";
-import { DotIcon } from "@/assets/dot-icon";
+import { EllipsisWrapper } from "../elements/ellipsis-wrapper"; 
 import { BsThreeDots } from "react-icons/bs";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { useUser } from "../profile/hooks/use-user";

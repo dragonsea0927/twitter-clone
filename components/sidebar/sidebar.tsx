@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 import React from "react";
 import { Logo } from "./logo";
 import Navbar from "../navbar/navbar";
-import TweetButton from "../create-tweet/tweet-button";
+import TweetButton from "../create-tweet/tweet-button"; 
 import SessionOwnerButton from "../auth/session-owner-button";
 
 function Sidebar() {
