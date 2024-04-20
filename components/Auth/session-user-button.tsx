@@ -6,7 +6,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { useUser } from "../profile/hooks/use-user";
 
-const SessionOwnerButton = () => {
+const SessionUserButton = () => {
   const { data: session }: any = useSession();
   const {data:user} = useUser({ id: session.currentUser?.id });
  
@@ -74,4 +74,4 @@ const SessionOwnerButton = () => {
   );
 };
 
-export default SessionOwnerButton;
+export default SessionUserButton;

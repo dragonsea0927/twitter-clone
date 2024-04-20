@@ -3,7 +3,7 @@ import React from "react";
 import { Logo } from "./logo";
 import Navbar from "../navbar/navbar";
 import TweetButton from "../create-tweet/tweet-button"; 
-import SessionOwnerButton from "../auth/session-owner-button";
+import SessionUserButton from "../auth/session-user-button";
 
 function Sidebar() {
   const { data: session } = useSession();
@@ -24,7 +24,7 @@ function Sidebar() {
 
       {session && (
         <div className="xxl:justify-start  mt-auto flex">
-          <SessionOwnerButton />
+          <SessionUserButton />
         </div>
       )}
     </header>

@@ -55,7 +55,6 @@ const Home = ({ children }: Props) => {
             <Toaster />
           </main>
           <Aside />
-          {/* <FollowBar /> */}
         </div>
       )}
     </>
