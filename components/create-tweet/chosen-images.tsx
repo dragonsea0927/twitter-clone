@@ -15,7 +15,7 @@ const ChosenImages = ({
  
     
   return (
-    <></>
+    <><div>CHOSENIMAGES</div></>
     // <div
     // className={`${styles.container} ${
     //     chosenImages.length === 1

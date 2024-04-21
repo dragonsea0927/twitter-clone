@@ -11,7 +11,7 @@ const TweetMedia = ({
   tweet_id: string;
 }) => {
   return (
-    <></>
+    <><div>TWEET MEDIA</div></>
     // <div className={styles.container}>
     //   <div
     //     aria-label="Media"

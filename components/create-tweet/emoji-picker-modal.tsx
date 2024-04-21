@@ -26,6 +26,7 @@ export const EmojiPickerModal = forwardRef<
 
   return (
     <>
+    <div>EMOJI PICKER MODAL</div>
     </>
     // <div style={style} className={styles.container}>
     //   <EmojiPicker

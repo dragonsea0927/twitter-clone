@@ -60,6 +60,7 @@ const CreateTweet = ({
 
   return (
     <>
+    <div>CREATE TWEET</div>
     </>
     // <div className={`${styles.container} border-b`}>
     //   <div className={styles.left}>

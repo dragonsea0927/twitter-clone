@@ -3,7 +3,7 @@ import React from "react";
 
 const LoadingSpinner = () => {
   return (
-    <></>
+    <><div>LOADING SPINNET</div></>
     // <div className={styles.container}>
     //   <span className={styles.loading}></span>
     // </div>
