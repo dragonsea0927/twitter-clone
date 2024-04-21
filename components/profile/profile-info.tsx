@@ -9,16 +9,14 @@ import { following } from "./utils/following";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { UserJoinDate } from "./user-join-date";
 import Link from "next/link";
-import EditProfileModal from "./edit-profile-modal";
-import styles from "./style/user-info.module.scss";
+import EditProfileModal from "./edit-profile-modal"; 
 import { MapPin } from "lucide-react";
 
 const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
   const { data: session }: any = useSession();
 
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
- 
-  
+
   const isFollowing = following({
     user: user,
     session_owner_id: session?.currentUser?.id,
@@ -43,19 +41,13 @@ const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
         </div>
 
         <div className="relative">
-          <div className={styles.avatar}>
-            <button
-              className={styles.avatarButton}
-              aria-label="Inspect profile picture"
-              onClick={() => {}}
-            >
-              <Avatar className="border-4 border-white dark:border-black object-cover w-full h-full">
-                <AvatarImage
-                  src={user?.profileImage || "/images/user_placeholder.png"}
-                />
-                <AvatarFallback className="text-7xl"></AvatarFallback>
-              </Avatar>
-            </button>
+          <div className="absolute left-4 w-[clamp(70px,20vw,146px)] h-[clamp(70px,20vw,146px)] transform -translate-y-1/2">
+            <Avatar className="border-4 border-white dark:border-black object-cover w-full h-full">
+              <AvatarImage
+                src={user?.profileImage || "/images/user_placeholder.png"}
+              />
+              <AvatarFallback className="text-7xl"></AvatarFallback>
+            </Avatar>
           </div>
 
           <div className="flex justify-end p-4">

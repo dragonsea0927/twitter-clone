@@ -8,7 +8,7 @@ import TweetActions from "./tweet-actions";
 import CreateTweetWrapper from "../create-tweet/create-tweet-wrapper";
 import TweetCreationDate from "./tweet-creation-date";
 import Comments from "./comments";
-// import TweetMedia from "./tweet-media";
+import TweetMedia from "./tweet-media";
 import LoadingSpinner from "../elements/loading/loading-spinner";
 
 const TweetDetails = ({
@@ -60,9 +60,9 @@ const TweetDetails = ({
             <div className="mt-1 text-sm line-clamp-4">{tweet?.body}</div>
           )}
 
-          {/* {tweet?.media?.length > 0 && (
+          {tweet?.media?.length > 0 && (
             <TweetMedia media={tweet?.media} tweet_id={tweet?.id} />
-          )} */}
+          )}
 
           <TweetCreationDate date={tweet?.createdAt} link={tweet?.id} />
 

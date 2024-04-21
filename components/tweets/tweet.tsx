@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { formatDistanceToNowStrict } from "date-fns";
 import TweetActions from "./tweet-actions";
 import { ITweet } from "./types";
-// import TweetMedia from "./tweet-media";
+import TweetMedia from "./tweet-media";
 import TweetOptions from "./options/tweet-options";
 import { highlightHashtags } from "./highlight-hashtags";
 
@@ -80,9 +80,9 @@ const Tweet = ({ tweet, pinned }: { tweet: ITweet; pinned?: boolean }) => {
                 </div>
               )}
 
-              {/* {tweet?.media?.length > 0 && (
+              {tweet?.media?.length > 0 && (
                 <TweetMedia media={tweet?.media} tweet_id={tweet?.id} />
-              )} */}
+              )}
             </div>
 
             <div className="flex flex-row items-center mt-3 justify-between">

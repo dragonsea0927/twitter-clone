@@ -33,6 +33,7 @@ export const useTweets = ({
     getNextPageParam: (lastPage) => {
       return lastPage?.nextId;
     },
+    
     refetchOnWindowFocus: false,
   });
 };

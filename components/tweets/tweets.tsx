@@ -25,9 +25,6 @@ export const Tweets = () => {
     return <p>Try agian...</p>;
   }
 
- 
-  
-
   return (
     <InfiniteTweets
       tweets={tweets}

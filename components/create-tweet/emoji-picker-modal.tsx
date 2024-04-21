@@ -6,7 +6,6 @@ import EmojiPicker, {
 } from "emoji-picker-react";
 import React, { forwardRef } from "react";
 import { useTrackPosition } from "./utils/use-track-position";
-import styles from "./styles/emoji-picker-modal.module.scss";
 
 export const EmojiPickerModal = forwardRef<
   HTMLButtonElement,
@@ -25,7 +24,7 @@ export const EmojiPickerModal = forwardRef<
   };
 
   return (
-    <div style={style} className={styles.container}>
+    <div style={style} className="w-min-[320px] h-[400px]">
       <EmojiPicker
         theme={Theme.AUTO}
         onEmojiClick={onClick}

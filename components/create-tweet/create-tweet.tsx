@@ -16,8 +16,7 @@ import { PollIcon } from "@/assets/poll-icon";
 import { ScheduleIcon } from "@/assets/schedule-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import EmojiButton from "./emoji-button";
-
-import styles from "./styles/create-tweet.module.scss";
+ 
 
 interface Props {
   placeholder?: string | null;
@@ -59,16 +58,16 @@ const CreateTweet = ({
   if (!session) return null;
 
   return (
-    <div className={`${styles.container} border-b`}>
-      <div className={styles.left}>
+    <div className="h-full flex overflow-auto border-b py-3 px-4 gap-3">
+      <div>
         <Avatar className="bg-center bg-cover h-9 w-9 ">
           <AvatarImage src={session?.currentUser?.profileImage} />
           <AvatarFallback>{session?.currentUser?.name[0]}</AvatarFallback>
         </Avatar>
       </div>
 
-      <form>
-        <div className={`${styles.context}`}>
+      <form className="w-full">
+        <div className='w-full space-y-3'>
           {in_reply_to_screen_name && (
             <div className="text-sm text-zinc-800 dark:text-zinc-500">
               <span className="">Replying to</span>
@@ -78,7 +77,7 @@ const CreateTweet = ({
             </div>
           )}
 
-          <div className="overflow-x-hidden overflow-y-auto w-full max-h-[720px]">
+          <div className="overflow-x-hidden overflow-y-auto w-full max-h-[320px]">
             <Textarea
               id={inputId}
               ref={inputRef}
@@ -98,8 +97,8 @@ const CreateTweet = ({
             />
           )}
 
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="flex flex-1 translate-x-[-8px]  flex-wrap items-center">
+          <div className="flex flex-wrap items-center">
+            <div className="flex flex-1 translate-x-[-8px] flex-wrap items-center">
               <Button
                type="button"
                 variant={"outline"}

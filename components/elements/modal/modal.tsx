@@ -1,8 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import React, { useCallback, useLayoutEffect, useRef } from "react";
-import { createPortal } from "react-dom";
-import styles from './style/modal.module.scss' 
+import { createPortal } from "react-dom"; 
 
 const Modal = ({
   children,
