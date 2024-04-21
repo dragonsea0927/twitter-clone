@@ -15,8 +15,6 @@ body {
       grid-template-columns: min-content auto;
 
       main {
-        
-        
         &:focus-visible { 
           outline-offset: -2px;
         }
@@ -30,7 +28,6 @@ body {
 
     @include mq("medium") {
       max-width: 700px;
- 
     }
 
     @include mq("large") {

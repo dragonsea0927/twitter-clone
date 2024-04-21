@@ -10,7 +10,7 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import { UserJoinDate } from "./user-join-date";
 import Link from "next/link";
 import EditProfileModal from "./edit-profile-modal";
-import styles from "./style/user-info.module.scss";
+// import styles from "./style/user-info.module.scss";
 import { MapPin } from "lucide-react";
 
 const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
@@ -43,7 +43,7 @@ const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
         </div>
 
         <div className="relative">
-          <div className={styles.avatar}>
+          {/* <div className={styles.avatar}>
             <button
               className={styles.avatarButton}
               aria-label="Inspect profile picture"
@@ -56,7 +56,7 @@ const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
                 <AvatarFallback className="text-7xl"></AvatarFallback>
               </Avatar>
             </button>
-          </div>
+          </div> */}
 
           <div className="flex justify-end p-4">
             {session?.currentUser?.id === user?.id ? (

@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import React, { useCallback, useLayoutEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import styles from './style/modal.module.scss' 
+// import styles from './style/modal.module.scss' 
 
 const Modal = ({
   children,
@@ -160,7 +160,7 @@ const Modal = ({
         e.stopPropagation();
       }}
       ref={modalRef}
-      className={`${styles.container}`}
+      className="z-50 fixed top-0 left-0 w-full h-full"
       style={backdropStyle}
       id="dialog"
       role="dialog"

@@ -30,7 +30,7 @@ const Home = ({ children }: Props) => {
   return (
     <>
       {session && (
-        <div className="layout ">
+        <div className="layout max-w-[1265px]">
           <Sidebar />
 
           <main

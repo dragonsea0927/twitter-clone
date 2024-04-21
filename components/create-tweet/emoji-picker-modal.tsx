@@ -6,7 +6,7 @@ import EmojiPicker, {
 } from "emoji-picker-react";
 import React, { forwardRef } from "react";
 import { useTrackPosition } from "./utils/use-track-position";
-import styles from "./styles/emoji-picker-modal.module.scss";
+// import styles from "./styles/emoji-picker-modal.module.scss";
 
 export const EmojiPickerModal = forwardRef<
   HTMLButtonElement,
@@ -25,17 +25,19 @@ export const EmojiPickerModal = forwardRef<
   };
 
   return (
-    <div style={style} className={styles.container}>
-      <EmojiPicker
-        theme={Theme.AUTO}
-        onEmojiClick={onClick}
-        emojiStyle={EmojiStyle.TWITTER}
-        searchPlaceHolder="Search emojis"
-        width={`100%`}
-        height={`100%`}
-        suggestedEmojisMode={SuggestionMode.RECENT}
-      />
-    </div>
+    <>
+    </>
+    // <div style={style} className={styles.container}>
+    //   <EmojiPicker
+    //     theme={Theme.AUTO}
+    //     onEmojiClick={onClick}
+    //     emojiStyle={EmojiStyle.TWITTER}
+    //     searchPlaceHolder="Search emojis"
+    //     width={`100%`}
+    //     height={`100%`}
+    //     suggestedEmojisMode={SuggestionMode.RECENT}
+    //   />
+    // </div>
   );
 });
 
