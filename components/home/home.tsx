@@ -6,7 +6,7 @@ import { Toaster } from "../ui/toaster";
 import NextTopLoader from "nextjs-toploader"; 
 import Aside from "../aside/aside";
 import LoadingScreen from "../elements/loading-screen/loading-screen";
-import Auth from "../auth";
+import Auth from "../auth_user";
 
 interface Props {
   children: React.ReactNode;
