@@ -33,8 +33,8 @@ const Tweet = ({ tweet, pinned }: { tweet: ITweet; pinned?: boolean }) => {
       <div className="border-b-[1px] px-4 pt-2 pb-2  transition relative">
         <div className="flex flex-row gap-3 w-full  ">
           <Avatar onClick={goToProfile} className="h-9 w-9 cursor-pointer">
-            <AvatarImage src={tweet?.user?.profileImage} />
-            <AvatarFallback>{tweet?.user?.name[0]}</AvatarFallback>
+            <AvatarImage src={tweet?.user?.profileImage || `/images/user_placeholder.png`} />
+            <AvatarFallback>{tweet?.user?.name}</AvatarFallback>
           </Avatar>
 
           <div className="w-full">

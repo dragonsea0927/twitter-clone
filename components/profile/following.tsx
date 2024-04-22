@@ -6,6 +6,7 @@ import PersonDetails from "../connect/person-details";
 import { useUser } from "./hooks/use-user";
 import NoFollowers from "./no-followers";
 import LoadingSpinner from "../elements/loading/loading-spinner";
+import TryAgain from "../elements/try-again";
 
 const Following = () => {
   const pathname = usePathname();
@@ -25,13 +26,11 @@ const Following = () => {
 
   if (isError) {
     return (
-      <>
-        <p>Try again</p>
-      </>
+      <TryAgain/>
     );
   }
   return (
-    <div>
+    <>
         
       {followingData?.length === 0 ? (
         <NoFollowers
@@ -39,13 +38,13 @@ const Following = () => {
           subtitle="Once they follow accounts, they’ll show up here."
         />
       ) : (
-        <div>
+        <>
           {followingData?.map((user) => {
             return <PersonDetails key={user?.id} author={user} />;
           })}
-        </div>
+        </>
       )}
-    </div>
+    </>
   );
 };
 

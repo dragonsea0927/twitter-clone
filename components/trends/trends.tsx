@@ -1,32 +1,30 @@
-'use client'
+"use client";
 import React from "react";
 import { useHashtags } from "../explore/hooks/use-hashtag";
 import Trend from "./trend";
 import LoadingSpinner from "../elements/loading/loading-spinner";
+import TryAgain from "../elements/try-again";
 
 const Trends = () => {
-  const { data: hashtags, isError, isLoading } = useHashtags({limit:20});
+  const { data: hashtags, isError, isLoading } = useHashtags({ limit: 15 });
   return (
     <section aria-label="Trends" className="">
       {isLoading ? (
-         <LoadingSpinner/>
+        <LoadingSpinner />
       ) : isError ? (
-        <div>Error</div>
+        <TryAgain/>
       ) : hashtags ? (
         <>
-          <div>
-            {hashtags?.map((hashtag, index) => {
-              return (
-                <Trend
-                  key={hashtag.id}
-                  ranking={index + 1}
-                  title={hashtag.text}
-                  tweets={hashtag.score}
-                />
-              );
-            })}
-          </div>
-           
+          {hashtags?.map((hashtag, index) => {
+            return (
+              <Trend
+                key={hashtag.id}
+                ranking={index + 1}
+                title={hashtag.text}
+                tweets={hashtag.score}
+              />
+            );
+          })}
         </>
       ) : (
         ""

@@ -1,6 +1,4 @@
-import Comment from "@/database/comment.model";
-import Post from "@/database/post.model";
-import User from "@/database/user.model";
+ 
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prismadb";
 

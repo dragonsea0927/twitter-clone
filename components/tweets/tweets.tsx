@@ -1,6 +1,7 @@
 "use client";
 
 import LoadingSpinner from "../elements/loading/loading-spinner";
+import TryAgain from "../elements/try-again";
 import { useTweets } from "./hooks/use-tweets";
 import { InfiniteTweets } from "./infinite-tweet";
 
@@ -22,7 +23,7 @@ export const Tweets = () => {
   }
 
   if (isError) {
-    return <p>Try agian...</p>;
+    return <TryAgain/>;
   }
 
   return (

@@ -1,6 +1,4 @@
-import Post from "@/database/post.model";
-import { authOptions } from "@/lib/auth-options";
-import { getServerSession } from "next-auth";
+ 
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prismadb";
 

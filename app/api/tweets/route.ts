@@ -56,6 +56,13 @@ export async function GET(request: Request) {
             },
           },
         }),
+
+        ...(type === "search" && {
+          body: {
+            contains: id,
+            mode: "insensitive",
+          },
+        }),
       },
 
       include: {

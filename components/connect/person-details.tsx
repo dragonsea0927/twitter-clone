@@ -32,7 +32,7 @@ const PersonDetails = ({ author }: { author: IUser }) => {
       >
         <div className="">
           <Avatar>
-            <AvatarImage src={author?.profileImage ?? ''} alt="@shadcn" />
+            <AvatarImage src={author?.profileImage ?? ""} alt="@shadcn" />
             <AvatarFallback>{author?.name?.[0]}</AvatarFallback>
           </Avatar>
         </div>
@@ -41,24 +41,26 @@ const PersonDetails = ({ author }: { author: IUser }) => {
           <div className="">
             <div className="flex  flex-row justify-between items-center">
               <div className="flex flex-col">
-                <span className="hover:underline font-semibold">{author?.name}</span>
+                <span className="hover:underline font-semibold">
+                  {author?.name}
+                </span>
                 <span className="text-sm text-light-gray ">
                   @{author?.username}
                 </span>
               </div>
 
-              <FollowButton
-                user_id={author?.id}
-                session_owner_id={session?.currentUser?.id}
-                isFollowing={isFollowing}
-              />
+              {session?.currentUser?.id === author?.id ? (
+                ""
+              ) : (
+                <FollowButton
+                  user_id={author?.id}
+                  session_owner_id={session?.currentUser?.id}
+                  isFollowing={isFollowing}
+                />
+              )}
             </div>
           </div>
-          {author?.bio && (
-            <div>
-              <span className="text-sm">{author.bio}</span>
-            </div>
-          )}
+          {author?.bio && <span className="text-sm">{author.bio}</span>}
         </div>
       </div>
     </>

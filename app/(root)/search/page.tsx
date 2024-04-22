@@ -1,10 +1,15 @@
+import ExploreHeader from '@/components/header/explore-header'
+import SearchResults from '@/components/search/search-results'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+      <div className="pb-10">
+        <ExploreHeader />
+        <SearchResults/>
+      </div>
+    </>
   )
 }
 

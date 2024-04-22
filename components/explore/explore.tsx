@@ -1,35 +1,31 @@
 "use client";
-import { usePathname } from "next/navigation";
-import React from "react"; 
-import { useTweets } from "../tweets/hooks/use-tweets";
+import React from "react";
 import { InfiniteTweets } from "../tweets/infinite-tweet";
 import LoadingSpinner from "../elements/loading/loading-spinner";
 import TryAgain from "../elements/try-again";
+import { useTweets } from "../tweets/hooks/use-tweets";
 
-const ProfileMedia = () => {
-  const pathname = usePathname();
-  const id = pathname.split("/")[2] as string;
-
+const Explore = () => {
   const {
     data: tweets,
-    isError,
     isLoading,
-    fetchNextPage,
-    isFetchingNextPage,
+    isError,
     isSuccess,
+    isFetchingNextPage,
     hasNextPage,
-  } = useTweets({
-    queryKey: ["tweets", id, "media"],
-    type: "user_media",
-    id,
-  });
+    fetchNextPage,
+  } = useTweets({});
 
   if (isLoading) {
-    return  <LoadingSpinner/>;
+    return (
+      <>
+        <LoadingSpinner />
+      </>
+    );
   }
 
   if (isError) {
-    return<TryAgain/>;
+    return <TryAgain />;
   }
 
   return (
@@ -43,4 +39,4 @@ const ProfileMedia = () => {
   );
 };
 
-export default ProfileMedia;
+export default Explore;

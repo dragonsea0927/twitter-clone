@@ -2,6 +2,7 @@
 import { useInView } from "react-intersection-observer";
 import { IInfiniteTweets } from "./types";
 import Tweet from "./tweet";
+import LoadingSpinner from "../elements/loading/loading-spinner";
 
 export const InfiniteTweets = ({
   tweets,
@@ -23,7 +24,7 @@ export const InfiniteTweets = ({
   });
 
   return (
-    <div>
+    <>
       {isSuccess &&
         tweets?.pages?.map((page) => {
           return page?.tweets?.map((tweet, index) =>
@@ -39,7 +40,7 @@ export const InfiniteTweets = ({
           );
         })}
 
-      {isFetchingNextPage && <p>Loadding spin...</p>}
-    </div>
+      {isFetchingNextPage && <LoadingSpinner />}
+    </>
   );
 };

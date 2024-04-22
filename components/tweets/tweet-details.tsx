@@ -10,6 +10,9 @@ import TweetCreationDate from "./tweet-creation-date";
 import Comments from "./comments";
 import TweetMedia from "./tweet-media";
 import LoadingSpinner from "../elements/loading/loading-spinner";
+import Link from "next/link";
+import { highlightHashtags } from "./highlight-hashtags";
+import TryAgain from "../elements/try-again";
 
 const TweetDetails = ({
   initialTweet,
@@ -27,25 +30,27 @@ const TweetDetails = ({
     id: tweetId,
     initialData: initialTweet,
   });
- 
-  
 
-  if (isPending) return  <LoadingSpinner/>;
+  if (isPending) return <LoadingSpinner />;
 
-  if (isError) return <p>Try agian</p>;
+  if (isError) return <TryAgain/>;
 
   return (
     <>
       <div className="p-4 pb-0 transition relative">
-        <div className=" flex flex-col space-y-4 w-full " onClick={() => {}}>
+        <div className="flex flex-col space-y-4 w-full ">
           <div className="flex flex-row gap-3">
             <Avatar onClick={() => {}} className="h-9 w-9">
-              <AvatarImage src={tweet?.user?.profileImage} />
-              <AvatarFallback>{tweet?.user?.name[0]}</AvatarFallback>
+              <AvatarImage
+                src={
+                  tweet?.user?.profileImage || `/images/user_placeholder.png`
+                }
+              />
+              <AvatarFallback>{tweet?.user?.name}</AvatarFallback>
             </Avatar>
 
-            <div className="w-full ">
-              <div className="flex flex-col " onClick={() => {}}>
+            <Link className="w-full" href={`/profile/${tweet.user.id}`}>
+              <div className="flex flex-col ">
                 <span className="font-semibold text-sm cursor-pointer hover:underline">
                   {tweet?.user?.name}
                 </span>
@@ -53,11 +58,11 @@ const TweetDetails = ({
                   @{tweet?.user?.username}
                 </span>
               </div>
-            </div>
+            </Link>
           </div>
 
           {tweet?.body && (
-            <div className="mt-1 text-sm line-clamp-4">{tweet?.body}</div>
+            <div className="mt-1 text-sm line-clamp-4">{highlightHashtags(tweet?.body)}</div>
           )}
 
           {tweet?.media?.length > 0 && (
@@ -72,7 +77,7 @@ const TweetDetails = ({
         </div>
       </div>
       <CreateTweetWrapper
-        in_reply_to_screen_name={tweet?.user?.username}
+        in_reply_to_screen_name={tweet?.user?.username || ""}
         in_reply_to_tweet_id={tweet?.id}
       />
 

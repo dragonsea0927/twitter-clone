@@ -12,7 +12,7 @@ const page = async ({ params }: { params: { userId: string } }) => {
   });
 
   return (
-    <div>
+    <>
       <ProfileHeader
         heading={user?.name ?? undefined}
         stats={`${user?._count?.posts} ${
@@ -21,7 +21,7 @@ const page = async ({ params }: { params: { userId: string } }) => {
       />
       <Profile initialUser={user as any} />
       <ProfileMedia />
-    </div>
+    </>
   );
 };
 

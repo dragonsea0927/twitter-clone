@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { useGetFollows } from "./hooks/use-get-follows";
@@ -17,24 +17,24 @@ const Followers = () => {
     isLoading,
   } = useGetFollows({ id, type: "followers" });
 
-
   return (
-    <div>
+    <>
       {follows?.length === 0 ? (
         <>
-          <NoFollowers title={`Looking for followers?`}  
-          subtitle={`When someone follows this account, they'll show up here. Tweeting
+          <NoFollowers
+            title={`Looking for followers?`}
+            subtitle={`When someone follows this account, they'll show up here. Tweeting
           and interacting with others helps boost followers.`}
-          /> 
+          />
         </>
       ) : (
-        <div>
-          {follows?.map((user)=> {
-              return <PersonDetails key={user?.id}  author={user}/>
+        <>
+          {follows?.map((user) => {
+            return <PersonDetails key={user?.id} author={user} />;
           })}
-        </div>
+        </>
       )}
-    </div>
+    </>
   );
 };
 

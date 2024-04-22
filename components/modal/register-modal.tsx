@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useCallback, useState } from "react";
 import Modal from "../ui/modal";
-import useRegisterModal from "@/hooks/useRegisterModal";
-import useLoginModal from "@/hooks/useLoginModal";
+import useRegisterModal from "@/components/modal/hooks/useRegisterModal";
+import useLoginModal from "@/components/modal/hooks/useLoginModal";
 import { useForm } from "react-hook-form";
 import { registerStep1Schema, registerStep2Schema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";

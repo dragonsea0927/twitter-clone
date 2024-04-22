@@ -3,6 +3,7 @@ import { useUsers } from "../profile/hooks/use-users";
 import Person from "./person";
 import Link from "next/link";
 import LoadingSpinner from "../elements/loading/loading-spinner";
+import TryAgain from "../elements/try-again";
 
 const Connect = () => {
   const {
@@ -14,17 +15,17 @@ const Connect = () => {
   return (
     <section aria-label="Who to follow" className="">
       {isLoading ? (
-        <LoadingSpinner/>
+        <LoadingSpinner />
       ) : isError ? (
-        <div>Error</div>
+       <TryAgain/>
       ) : (
         <>
           <h2 className="text-lg py-3 px-4 font-semibold">Who to follow</h2>
-          <div>
-            {people.map((person) => {
-              return <Person key={person.id} person={person} />;
-            })}
-          </div>
+
+          {people.map((person) => {
+            return <Person key={person.id} person={person} />;
+          })}
+
           <Link
             className="block p-[1em] cursor-pointer rounded-b-2xl hover:bg-slate-500/10 text-[15px]"
             href={`/people`}

@@ -20,11 +20,9 @@ const ConnectHeader = () => {
           />
           <h2 className="text-lg font-bold  ">Connect</h2>
         </div>
-        <div>
-        <h2 className=" py-3 text-lg font-bold  ">
-        Suggested for you
-      </h2>
-        </div>
+        <>
+          <h2 className=" py-3 text-lg font-bold ">Suggested for you</h2>
+        </>
       </div>
     </Header>
   );

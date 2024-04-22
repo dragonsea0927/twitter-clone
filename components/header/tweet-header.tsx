@@ -14,7 +14,7 @@ export const TweetHeader = () => {
         className={"cursor-pointer hover:opacity-70 transition"}
       />
 
-      <span className="text-lg">Home</span>
+      <span className="text-lg">Post</span>
     </Header>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Header } from "./header"; 
+import { Header } from "./header";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { EllipsisWrapper } from "../elements/ellipsis-wrapper";
@@ -16,13 +16,11 @@ const ProfileHeader = ({
 
   return (
     <Header className="gap-5 w-full">
-      <div className="flex flex-row items-center gap-4">
-        <ArrowLeft
-          onClick={() => router.back()}
-          size={20}
-          className={"cursor-pointer hover:opacity-70 transition"}
-        />
-      </div>
+      <ArrowLeft
+        onClick={() => router.back()}
+        size={20}
+        className={"cursor-pointer hover:opacity-70 transition"}
+      />
       <div>
         <h2 className=" font-bold text-secondary-100">
           {heading ?? "Profile"}

@@ -17,10 +17,9 @@ export const useTweets = ({
   type?: string;
   id?: string;
 }) => {
-  return useInfiniteQuery<IInfiniteTweets>({ 
+  return useInfiniteQuery<IInfiniteTweets>({
     queryKey,
     queryFn: ({ pageParam }) => {
-      
       return getTweets({
         pageParam,
         limit: 20,
@@ -33,7 +32,7 @@ export const useTweets = ({
     getNextPageParam: (lastPage) => {
       return lastPage?.nextId;
     },
-    
+
     refetchOnWindowFocus: false,
   });
 };

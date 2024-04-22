@@ -17,7 +17,7 @@ const TrendsHeader = () => {
           />
           <h2 className="text-lg font-bold  ">Trends</h2>
         </div>
-        <div></div>
+       
       </div>
     </Header>
   );

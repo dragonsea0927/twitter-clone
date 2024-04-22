@@ -9,7 +9,7 @@ import { following } from "./utils/following";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { UserJoinDate } from "./user-join-date";
 import Link from "next/link";
-import EditProfileModal from "./edit-profile-modal"; 
+import EditProfileModal from "./edit-profile-modal";
 import { MapPin } from "lucide-react";
 
 const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
@@ -87,11 +87,7 @@ const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
               </span>
             </div>
 
-            {user?.bio && (
-              <div>
-                <span className="text-sm">{user?.bio}</span>
-              </div>
-            )}
+            {user?.bio && <span className="text-sm">{user?.bio}</span>}
 
             <div className="flex flex-col">
               <div className="flex gap-4 items-center">

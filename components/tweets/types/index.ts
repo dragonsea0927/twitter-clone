@@ -1,18 +1,17 @@
-import { IUser } from "@/types";
+
+import { IUser } from "@/components/profile/types";
 import { Bookmarks, Like, Media, Post } from "@prisma/client";
 
 export interface ITweet extends Post {
-  likes: ILike[];
-  body: string;
-  comments: string;
-  media: IMedia[];
-  Bookmarks: IBookmark[];
   user: IUser;
-  id: string;
-  hasLiked: boolean;
+  likes: ILike[];
+  media: IMedia[];
+  comments: ITweet[];
+  Bookmarks: IBookmark[];
   _count: {
     likes: number;
     comments: number;
+    Bookmarks:number
   };
 }
 

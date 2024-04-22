@@ -1,4 +1,4 @@
-import useLoginModal from "@/hooks/useLoginModal";
+import useLoginModal from "@/components/modal/hooks/useLoginModal";
 import Modal from "../ui/modal";
 import { loginSchema } from "@/lib/validation";
 import { useForm } from "react-hook-form";
@@ -18,24 +18,21 @@ import {
 import { Input } from "@/components/ui/input";
 import { useCallback, useState } from "react";
 
-
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "../ui/alert";
 import axios from "axios";
 import { signIn } from "next-auth/react";
-import useRegisterModal from "@/hooks/useRegisterModal";
+import useRegisterModal from "@/components/modal/hooks/useRegisterModal";
 
 const LoginModal = () => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const [error, setError] = useState("");
 
-
   const onToggle = useCallback(() => {
     loginModal.onClose();
     registerModal.onOpen();
   }, [loginModal, registerModal]);
-
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -45,15 +42,14 @@ const LoginModal = () => {
     },
   });
 
- async function onSubmit(values: z.infer<typeof loginSchema>) {
+  async function onSubmit(values: z.infer<typeof loginSchema>) {
     try {
-      const {data} = await axios.post('/api/auth/login',values);
+      const { data } = await axios.post("/api/auth/login", values);
 
-      if(data.success){
-        signIn("credentials",values)
+      if (data.success) {
+        signIn("credentials", values);
         loginModal.onClose();
       }
-
     } catch (error: any) {
       if (error.response.data.error) {
         setError(error.response.data.error);
@@ -70,11 +66,11 @@ const LoginModal = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {error && (
-             <Alert variant="destructive">
-             <AlertCircle className="h-4 w-4" />
-             <AlertTitle>Error</AlertTitle>
-             <AlertDescription>{error}</AlertDescription>
-           </Alert>
+            <Alert variant="destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
           )}
           <FormField
             control={form.control}
@@ -91,7 +87,6 @@ const LoginModal = () => {
           <FormField
             control={form.control}
             name="password"
-            
             render={({ field }) => (
               <FormItem>
                 <FormControl>
@@ -112,16 +107,15 @@ const LoginModal = () => {
   );
 
   const footerContent = (
-    <div>
-      <p>
-      Don't have an account? 
-        <span
-          className="cursor-pointer hover:underline pl-2 text-sky-500"
-          onClick={onToggle}>
-          Sign up
-        </span>
-      </p>
-    </div>
+    <p>
+      Don't have an account?
+      <span
+        className="cursor-pointer hover:underline pl-2 text-sky-500"
+        onClick={onToggle}
+      >
+        Sign up
+      </span>
+    </p>
   );
 
   return (

@@ -4,6 +4,7 @@ import React from "react";
 import { useTweets } from "../tweets/hooks/use-tweets";
 import { InfiniteTweets } from "../tweets/infinite-tweet";
 import LoadingSpinner from "../elements/loading/loading-spinner";
+import TryAgain from "../elements/try-again";
 
 
 const ProfileTweetsAndReplies = () => {
@@ -26,7 +27,7 @@ const ProfileTweetsAndReplies = () => {
 
 
   if(isError){
-    return <><p>Try again</p></>
+    return <TryAgain/>
   }
 
   if(isLoading){

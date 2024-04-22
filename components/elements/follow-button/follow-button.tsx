@@ -21,34 +21,33 @@ const FollowButton = ({
 
   const handleFollow = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    
-      if (isFollowing) {
-        unfollowMutation.mutate({ user_id, session_owner_id });
-      } else {
-        followMutation.mutate({ user_id, session_owner_id });
-      }
-     
+
+    if (isFollowing) {
+      unfollowMutation.mutate({ user_id, session_owner_id });
+    } else {
+      followMutation.mutate({ user_id, session_owner_id });
+    }
   };
 
   return (
-    <div>
-      <Button
-        className={`w-fit ${isFollowing ? '' : 'default'}`}
-        variant={isFollowing ? 'outline' : 'default'}
-        onClick={(e) => {
-          handleFollow(e);
-        }}
-        onKeyDown={(e) => {
-          e.stopPropagation();
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.textContent = isFollowing ? "Unfollow" : "Follow";
-        }}
-        onMouseLeave={(e)=>{e.currentTarget.textContent = isFollowing ? 'Following' : 'Follow'}}
-      >
-        {isFollowing ? "Following" : "Follow"}
-      </Button>
-    </div>
+    <Button
+      className={`w-fit ${isFollowing ? "" : "default"}`}
+      variant={isFollowing ? "outline" : "default"}
+      onClick={(e) => {
+        handleFollow(e);
+      }}
+      onKeyDown={(e) => {
+        e.stopPropagation();
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.textContent = isFollowing ? "Unfollow" : "Follow";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.textContent = isFollowing ? "Following" : "Follow";
+      }}
+    >
+      {isFollowing ? "Following" : "Follow"}
+    </Button>
   );
 };
 

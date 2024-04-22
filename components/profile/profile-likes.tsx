@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { InfiniteTweets } from "../tweets/infinite-tweet";
 import { useTweets } from "../tweets/hooks/use-tweets";
 import LoadingSpinner from "../elements/loading/loading-spinner";
+import TryAgain from "../elements/try-again";
 
 const ProfileLikes = () => {
   const pathname = usePathname();
@@ -24,7 +25,7 @@ const ProfileLikes = () => {
   });
 
   if (isError) {
-    return <p>Try again</p>;
+    return <TryAgain/>;
   }
   if (isLoading) {
     return  <LoadingSpinner/>;

@@ -2,6 +2,7 @@ import React from "react";
 import { useTweets } from "./hooks/use-tweets";
 import { InfiniteTweets } from "./infinite-tweet";
 import LoadingSpinner from "../elements/loading/loading-spinner";
+import TryAgain from "../elements/try-again";
 
 const Comments = ({ tweetId }: { tweetId: string }) => {
   const {
@@ -23,7 +24,7 @@ const Comments = ({ tweetId }: { tweetId: string }) => {
   }
 
   if (isError) {
-    return <p>Try again</p>;
+    return <TryAgain/>;
   }
 
   return (

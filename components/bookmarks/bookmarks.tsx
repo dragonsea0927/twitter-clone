@@ -5,6 +5,7 @@ import { useTweets } from "../tweets/hooks/use-tweets";
 import { InfiniteTweets } from "../tweets/infinite-tweet";
 import NoBookmarks from "./no-bookmarks";
 import LoadingSpinner from "../elements/loading/loading-spinner";
+import TryAgain from "../elements/try-again";
 
 const Bookmarks = () => {
   const { data: session }: any = useSession();
@@ -27,6 +28,9 @@ const Bookmarks = () => {
     return <LoadingSpinner />;
   }
 
+  if(isError) {
+    return <TryAgain/>
+  }
   return (
     <>
       {isSuccess && bookmarks?.pages[0]?.tweets?.length === 0 ? (

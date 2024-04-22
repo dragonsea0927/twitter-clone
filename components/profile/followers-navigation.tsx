@@ -10,7 +10,7 @@ const FollowersNavigation = () => {
   const id = pathname.split("/")[2] as string;
 
   return (
-    <div>
+    
       <Tabs defaultValue="followers" className="w-full bg-none border-b">
         <TabsList className="w-full justify-evenly">
           <NavigationTab
@@ -25,7 +25,7 @@ const FollowersNavigation = () => {
           />
         </TabsList>
       </Tabs>
-    </div>
+    
   );
 };
 

@@ -16,7 +16,6 @@ import { PollIcon } from "@/assets/poll-icon";
 import { ScheduleIcon } from "@/assets/schedule-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import EmojiButton from "./emoji-button";
- 
 
 interface Props {
   placeholder?: string | null;
@@ -59,15 +58,13 @@ const CreateTweet = ({
 
   return (
     <div className="h-full flex overflow-auto border-b py-3 px-4 gap-3">
-      <div>
-        <Avatar className="bg-center bg-cover h-9 w-9 ">
-          <AvatarImage src={session?.currentUser?.profileImage} />
-          <AvatarFallback>{session?.currentUser?.name[0]}</AvatarFallback>
-        </Avatar>
-      </div>
+      <Avatar className="bg-center bg-cover h-9 w-9 ">
+        <AvatarImage src={session?.currentUser?.profileImage} />
+        <AvatarFallback>{session?.currentUser?.name[0]}</AvatarFallback>
+      </Avatar>
 
       <form className="w-full">
-        <div className='w-full space-y-3'>
+        <div className="w-full space-y-3">
           {in_reply_to_screen_name && (
             <div className="text-sm text-zinc-800 dark:text-zinc-500">
               <span className="">Replying to</span>
@@ -100,7 +97,7 @@ const CreateTweet = ({
           <div className="flex flex-wrap items-center">
             <div className="flex flex-1 translate-x-[-8px] flex-wrap items-center">
               <Button
-               type="button"
+                type="button"
                 variant={"outline"}
                 tabIndex={0}
                 className="p-2 h-[34px] w-[34px] fill-sky-500 outline-none border-none rounded-full justify-center flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
@@ -133,7 +130,7 @@ const CreateTweet = ({
               </Button>
 
               <Button
-               type="button"
+                type="button"
                 variant={"outline"}
                 className="p-2 h-[34px] w-[34px] fill-sky-500 outline-none border-none rounded-full justify-center flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
               >
@@ -151,7 +148,7 @@ const CreateTweet = ({
               <EmojiButton setText={setText} inputId={inputId} />
 
               <Button
-               type="button"
+                type="button"
                 variant={"outline"}
                 className="p-2 h-[34px] w-[34px] fill-sky-500 outline-none border-none rounded-full justify-center flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
               >
@@ -159,7 +156,7 @@ const CreateTweet = ({
               </Button>
 
               <Button
-               type="button"
+                type="button"
                 variant={"outline"}
                 className="p-2 h-[34px] w-[34px] fill-sky-500 outline-none border-none rounded-full justify-center flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
               >
@@ -169,7 +166,7 @@ const CreateTweet = ({
 
             <div className="flex items-center gap-2">
               <Button
-              type="button"
+                type="button"
                 disabled={
                   (text.length === 0 || text.length > 60) &&
                   chosenImages.length === 0

@@ -3,6 +3,7 @@ import React from "react";
 import { useUsers } from "../profile/hooks/use-users";
 import PersonDetails from "./person-details";
 import LoadingSpinner from "../elements/loading/loading-spinner";
+import TryAgain from "../elements/try-again";
 
 const Connect = () => {
   const {
@@ -16,11 +17,11 @@ const Connect = () => {
   }
 
   if (isError) {
-    return <>Try again</>;
+    return <TryAgain/>;
   }
 
   return (
-    <div>
+    <>
       {people?.map((person) => {
         return (
           <div key={person.id}>
@@ -28,7 +29,7 @@ const Connect = () => {
           </div>
         );
       })}
-    </div>
+    </>
   );
 };
 
