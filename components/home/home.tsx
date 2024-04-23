@@ -1,12 +1,14 @@
 "use client";
 import { useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react"; 
+import React, { useEffect, useState } from "react";
 import Sidebar from "../sidebar/sidebar";
 import { Toaster } from "../ui/toaster";
-import NextTopLoader from "nextjs-toploader"; 
+import NextTopLoader from "nextjs-toploader";
 import Aside from "../aside/aside";
 import LoadingScreen from "../elements/loading-screen/loading-screen";
 import Auth from "../auth_user";
+import { ErrorBoundary } from "react-error-boundary";
+import Error from "./error";
 
 interface Props {
   children: React.ReactNode;
@@ -16,13 +18,14 @@ const Home = ({ children }: Props) => {
   const { data: session, status } = useSession();
 
   if (status === "loading") {
-    return <LoadingScreen/>;
+    return <LoadingScreen />;
+
   }
 
   if (!session) {
     return (
       <div className="container h-screen mx-auto max-w-7xl">
-        <Auth />
+          <Auth />
       </div>
     );
   }
@@ -32,7 +35,6 @@ const Home = ({ children }: Props) => {
       {session && (
         <div className="layout max-w-[1265px]">
           <Sidebar />
-
           <main
             aria-label="Home timeline"
             id="home-timeline"

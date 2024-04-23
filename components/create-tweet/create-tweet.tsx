@@ -168,7 +168,7 @@ const CreateTweet = ({
               <Button
                 type="button"
                 disabled={
-                  (text.length === 0 || text.length > 60) &&
+                  (text.length === 0 || text.length > 90) &&
                   chosenImages.length === 0
                 }
                 className="px-6 w-fit bg-sky-500 text-white font-semibold"

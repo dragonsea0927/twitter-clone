@@ -27,6 +27,7 @@ const Auth = () => {
     <>
       <RegisterModal />
       <LoginModal />
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center h-screen">
         <FaXTwitter className="justify-self-center hidden md:block h-2/3 w-2/3" />
 

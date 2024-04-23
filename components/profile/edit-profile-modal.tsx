@@ -167,6 +167,7 @@ const EditProfileModal = ({
               fill
               alt="avatar"
               className="bg-gray-200"
+               
               style={{ objectFit: "cover", borderRadius: "100%" }}
             />
 

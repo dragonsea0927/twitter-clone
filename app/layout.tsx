@@ -4,6 +4,7 @@ import "./globals.css";
 import './styles/layout.scss'
 
 import { AppProviders } from "@/providers";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
+       
         <AppProviders
           attribute="class"
           defaultTheme="dark"

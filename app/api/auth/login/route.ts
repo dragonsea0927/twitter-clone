@@ -31,6 +31,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true, user: isExistingUser });
   } catch (error) {
     const result = error as Error;
-    return NextResponse.json({ error: result.message }, { status: 400 });
+    return NextResponse.json({ error: result.message }, { status: 500 });
   }
 }

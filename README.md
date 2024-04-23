@@ -10,6 +10,7 @@ This project is all about learning and growing as a full-stack developer. Join m
 - Likes / Comments / Replies / Bookmark tweet functionality
 - Discover trending hashtags
 - Fully responsive
+- Change theme using shortcut `Alt + T`
 
 ## Built with
 
