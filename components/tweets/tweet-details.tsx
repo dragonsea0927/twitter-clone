@@ -46,7 +46,7 @@ const TweetDetails = ({
                   tweet?.user?.profileImage || `/images/user_placeholder.png`
                 }
               />
-              <AvatarFallback>{tweet?.user?.name}</AvatarFallback>
+              
             </Avatar>
 
             <Link className="w-full" href={`/profile/${tweet.user.id}`}>

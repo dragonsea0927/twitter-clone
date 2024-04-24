@@ -2,15 +2,12 @@
 import Link, { LinkProps } from "next/link";
 import React from "react"; 
 
- 
-
 interface NavLinkProps {
   href: string; 
   icon: React.ReactNode;
   text: string;
 }
  
-
 const NavItem: React.FC<NavLinkProps> = ({ href, icon, text }) => {
  
 

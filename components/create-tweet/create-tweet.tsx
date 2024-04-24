@@ -16,6 +16,7 @@ import { PollIcon } from "@/assets/poll-icon";
 import { ScheduleIcon } from "@/assets/schedule-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import EmojiButton from "./emoji-button";
+import { useUser } from "../profile/hooks/use-user";
 
 interface Props {
   placeholder?: string | null;
@@ -31,6 +32,7 @@ const CreateTweet = ({
   inputId = "tweet-text",
 }: Props) => {
   const { data: session }: any = useSession();
+  const {data:user} = useUser({id: session?.currentUser?.id})
   const [text, setText] = useState("");
 
   const [chosenImages, setChosenImages] = useState<IChosenImages[]>([]);
@@ -59,7 +61,7 @@ const CreateTweet = ({
   return (
     <div className="h-full flex overflow-auto border-b py-3 px-4 gap-3">
       <Avatar className="bg-center bg-cover h-9 w-9 ">
-        <AvatarImage src={session?.currentUser?.profileImage} />
+        <AvatarImage src={user?.profileImage || `/images/user_placeholder.png`} />
         <AvatarFallback>{session?.currentUser?.name[0]}</AvatarFallback>
       </Avatar>
 
@@ -150,7 +152,7 @@ const CreateTweet = ({
               <Button
                 type="button"
                 variant={"outline"}
-                className="p-2 h-[34px] w-[34px] fill-sky-500 outline-none border-none rounded-full justify-center flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
+                className="hidden p-2 h-[34px] w-[34px] fill-sky-500 outline-none border-none rounded-full justify-center sm:flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
               >
                 <ScheduleIcon />
               </Button>
@@ -158,7 +160,7 @@ const CreateTweet = ({
               <Button
                 type="button"
                 variant={"outline"}
-                className="p-2 h-[34px] w-[34px] fill-sky-500 outline-none border-none rounded-full justify-center flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
+                className="hidden p-2 h-[34px] w-[34px] fill-sky-500 outline-none border-none rounded-full justify-center sm:flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
               >
                 <LocationIcon />
               </Button>

@@ -9,6 +9,7 @@ import LoadingScreen from "../elements/loading-screen/loading-screen";
 import Auth from "../auth_user";
 import { ErrorBoundary } from "react-error-boundary";
 import Error from "./error";
+import MobileNavbar from "../navbar/mobile-navbar";
 
 interface Props {
   children: React.ReactNode;
@@ -34,6 +35,7 @@ const Home = ({ children }: Props) => {
     <>
       {session && (
         <div className="layout max-w-[1265px]">
+          <MobileNavbar/>
           <Sidebar />
           <main
             aria-label="Home timeline"

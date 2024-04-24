@@ -31,8 +31,8 @@ const Auth = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center h-screen">
         <FaXTwitter className="justify-self-center hidden md:block h-2/3 w-2/3" />
 
-        <div className="flex flex-col justify-center md:justify-between sm:gap-10 gap-5 h-full md:h-[60vh]">
-          <FaXTwitter className="block md:hidden justify-self-center h-2/6 w-2/6" />
+        <div className="flex flex-col justify-center pb-4 md:justify-between sm:gap-10 gap-5 h-full md:h-[60vh]">
+          <FaXTwitter className="block md:hidden justify-self-center h-1/5 w-1/5" />
 
           <h1 className="text-4xl sm:text-6xl font-bold ">Happening now</h1>
 
