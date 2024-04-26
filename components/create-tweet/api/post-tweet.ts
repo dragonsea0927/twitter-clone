@@ -23,12 +23,14 @@ export const PostTweet = async ({
     ...(in_reply_to_tweet_id && { in_reply_to_tweet_id }),
   };
   try {
+
     const { data } = await axios.post("/api/tweets", { tweet });
 
     if (files.length > 0) {
       await postMedia({ files, tweet_id: data.id });
     }
 
+  
     const hashtags = retrieveHastagsFromTweet(text);
     if (hashtags) {
       await postHashtags(hashtags);

@@ -16,8 +16,9 @@ export const Tweets = () => {
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
-  } = useTweets({});
-
+  } = useTweets({queryKey:['tweets']});
+ 
+  
   if (isLoading) {
     return  <LoadingSpinner/>;
   }

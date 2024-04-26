@@ -12,7 +12,7 @@ export const postMedia = async ({
   message_id?: string;
 }) => {
   try {
-    files.forEach(async (file) => {
+    const uploadPromises = files.map(async (file) => {
       const imagePath = createId();
 
       const { error } = await supabase.storage
@@ -42,7 +42,7 @@ export const postMedia = async ({
         });
       }
     });
-
+    await Promise.all(uploadPromises);
     return true;
   } catch (error: any) {
     if (error.response) {

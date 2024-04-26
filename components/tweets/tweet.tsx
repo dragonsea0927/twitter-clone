@@ -34,7 +34,6 @@ const Tweet = ({ tweet, pinned }: { tweet: ITweet; pinned?: boolean }) => {
         <div className="flex flex-row gap-3 w-full  ">
           <Avatar onClick={goToProfile} className="h-9 w-9 cursor-pointer">
             <AvatarImage src={tweet?.user?.profileImage || `/images/user_placeholder.png`} />
-           
           </Avatar>
 
           <div className="w-full">

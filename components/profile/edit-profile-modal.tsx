@@ -4,20 +4,14 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import Image from "next/image";
-import { CloseIcon } from "@/assets/close-icon";
-import { IoClose, IoCloseOutline } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 import { FaCamera } from "react-icons/fa";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Camera } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateProfile } from "./api/update-profile";

@@ -102,7 +102,7 @@ const CreateTweet = ({
                 type="button"
                 variant={"outline"}
                 tabIndex={0}
-                className="p-2 h-[34px] w-[34px] fill-sky-500 outline-none border-none rounded-full justify-center flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
+                className="p-2 h-[34px] w-[34px] outline-none border-none rounded-full justify-center flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
                 onClick={() => {
                   if (fileInputRef.current) {
                     fileInputRef.current.click();
@@ -134,7 +134,7 @@ const CreateTweet = ({
               <Button
                 type="button"
                 variant={"outline"}
-                className="p-2 h-[34px] w-[34px] fill-sky-500 outline-none border-none rounded-full justify-center flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
+                className="p-2 h-[34px] w-[34px]   outline-none border-none rounded-full justify-center flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
               >
                 <GifIcon />
               </Button>
@@ -142,7 +142,7 @@ const CreateTweet = ({
               <Button
                 type="button"
                 variant={"outline"}
-                className="p-2 h-[34px] w-[34px] fill-sky-500 outline-none border-none rounded-full justify-center flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
+                className="p-2 h-[34px] w-[34px]   outline-none border-none rounded-full justify-center flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
               >
                 <PollIcon />
               </Button>
@@ -152,7 +152,7 @@ const CreateTweet = ({
               <Button
                 type="button"
                 variant={"outline"}
-                className="hidden p-2 h-[34px] w-[34px] fill-sky-500 outline-none border-none rounded-full justify-center sm:flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
+                className="hidden p-2 h-[34px] w-[34px]   outline-none border-none rounded-full justify-center sm:flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
               >
                 <ScheduleIcon />
               </Button>
@@ -160,7 +160,7 @@ const CreateTweet = ({
               <Button
                 type="button"
                 variant={"outline"}
-                className="hidden p-2 h-[34px] w-[34px] fill-sky-500 outline-none border-none rounded-full justify-center sm:flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
+                className="hidden p-2 h-[34px] w-[34px]   outline-none border-none rounded-full justify-center sm:flex items-center hover:bg-zinc-400/10 transition-colors duration-200 ease-in-out "
               >
                 <LocationIcon />
               </Button>

@@ -78,7 +78,7 @@ const LoginModal = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Email" {...field} />
+                  <Input placeholder="Email" {...field} className=""/>
                 </FormControl>
                 <FormMessage />
               </FormItem>

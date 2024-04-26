@@ -24,7 +24,7 @@ export const InfiniteTweets = ({
   });
 
   return (
-    <>
+    <div className="pb-52">
       {isSuccess &&
         tweets?.pages?.map((page) => {
           return page?.tweets?.map((tweet, index) =>
@@ -41,6 +41,6 @@ export const InfiniteTweets = ({
         })}
 
       {isFetchingNextPage && <LoadingSpinner />}
-    </>
+    </div>
   );
 };
