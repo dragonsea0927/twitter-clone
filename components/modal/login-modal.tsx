@@ -78,7 +78,7 @@ const LoginModal = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Email" {...field} className=""/>
+                  <Input placeholder="Email" {...field}    autoComplete="off"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -121,7 +121,7 @@ function RegisterStep1({
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Name" {...field} />
+                <Input placeholder="Name" {...field} autoComplete="off"/>
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -133,7 +133,7 @@ function RegisterStep1({
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Email" {...field} />
+                <Input placeholder="Email" {...field} autoComplete="off"/>
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -203,7 +203,7 @@ function RegisterStep2({ data }: { data: { name: string; email: string } }) {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Username" {...field} />
+                <Input placeholder="Username" {...field} autoComplete="off" />
               </FormControl>
               <FormMessage />
             </FormItem>

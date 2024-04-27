@@ -8,7 +8,7 @@ const page = () => {
       <div className="pb-10">
         <ExploreHeader />
         <div className="border-b pb-5">
-          <Trends />
+          <Trends limit={15}/>
         </div>
         <Explore />
       </div>

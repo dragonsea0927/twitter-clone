@@ -1,8 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
 
 const Search = () => {
   const router = useRouter();
@@ -10,13 +9,11 @@ const Search = () => {
   const path = pathname.split("/")[1];
   const searchParams = useSearchParams();
 
- 
-  const [query, setQuery] = useState(
-    path === "search"
-      ? decodeURIComponent(searchParams?.get("query") || "")
-      : ""
-  );
+  const [query, setQuery] = useState('');
 
+  useEffect(()=>{
+    setQuery(decodeURIComponent(searchParams?.get("query") || ''))
+  },[searchParams])
 
   const handleSearch = (path: string) => {
     router.push(path);
@@ -27,6 +24,7 @@ const Search = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
+     
   };
 
   return (

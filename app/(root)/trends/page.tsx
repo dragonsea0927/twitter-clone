@@ -6,7 +6,7 @@ const page = () => {
   return (
     <>
         <TrendsHeader/>
-        <Trends/>
+        <Trends limit={15}/>
     </>
   )
 }

@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import './styles/layout.scss'
-
 import { AppProviders } from "@/providers";
-import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
        
+
         <AppProviders
           attribute="class"
           defaultTheme="dark"

@@ -36,7 +36,7 @@ export const useCreateTweet = ({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tweets"] });
       queryClient.invalidateQueries({ queryKey: ["hashtags"] });
-       
+      queryClient.invalidateQueries({ queryKey: ["hashtags-dialog"] });
     },
     onError: (error) => {
       console.log("error", error);

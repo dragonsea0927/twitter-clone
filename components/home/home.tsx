@@ -1,14 +1,12 @@
 "use client";
 import { useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Sidebar from "../sidebar/sidebar";
 import { Toaster } from "../ui/toaster";
 import NextTopLoader from "nextjs-toploader";
 import Aside from "../aside/aside";
 import LoadingScreen from "../elements/loading-screen/loading-screen";
-import Auth from "../auth_user";
-import { ErrorBoundary } from "react-error-boundary";
-import Error from "./error";
+import Auth from "../auth_user"; 
 import MobileNavbar from "../navbar/mobile-navbar";
 
 interface Props {
