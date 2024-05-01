@@ -3,11 +3,15 @@ This project is all about learning and growing as a full-stack developer. Join m
 
 ## Features ✨
 
-- Google / Github (NextAuth) Authentication 
+- Google / Github / Email (NextAuth) Authentication 
 - Edit profile with profile / banner images and other details
 - Create tweet with upto 4 images and support emojis
 - Follow / Unfollow user functionality
-- Likes / Comments / Replies / Bookmark tweet functionality
+- User can Likes / Comments / Replies / Bookmark tweet
+- User can see following list of other users
+- User can Delete / Pin own post 
+- User can see other user's following / followers list 
+- Search any post by keyword
 - Discover trending hashtags
 - Fully responsive
 - Change theme using shortcut `Alt + T`

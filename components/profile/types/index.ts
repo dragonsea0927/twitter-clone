@@ -1,4 +1,4 @@
-import { ITweet } from "@/components/tweets/types";
+import { IBookmark, ITweet } from "@/components/tweets/types";
 import { User, Like } from "@prisma/client";
 
 export interface IUser extends User {
@@ -6,7 +6,8 @@ export interface IUser extends User {
   followers: User[];
   following: User[];
   likes: ILike[];
-
+  bookmarks: IBookmark[];
+  pinned_tweet: ITweet;
   _count?: {
     followers?: number;
     following?: number;

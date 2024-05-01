@@ -21,11 +21,13 @@ model User {
   updatedAt    DateTime @updatedAt
 
   hasNewNotifications Boolean?
+  pinned_tweet_id     String?  @db.ObjectId
 
   posts Post[]
   Like  Like[]
 
-  userId String? @db.ObjectId
+  userId       String? @db.ObjectId
+  pinned_tweet Post?   @relation("pinned_tweet", fields: [pinned_tweet_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   followers    User[]      @relation("Followers", fields: [followersIds], references: [id])
   followersIds String[]    @db.ObjectId
@@ -51,8 +53,9 @@ model Post {
   tweet_comment Post?   @relation("tweet-comment", fields: [in_reply_to_tweet_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   comments      Post[]  @relation("tweet-comment")
 
-  likes     Like[]
-  Bookmarks Bookmarks[]
+  likes           Like[]
+  Bookmarks       Bookmarks[]
+  pinned_by_users User[]      @relation("pinned_tweet")
 }
 
 model Media {

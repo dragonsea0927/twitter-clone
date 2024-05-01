@@ -20,3 +20,7 @@ const page = async ({ params }: { params: { postId: string } }) => {
 };
 
 export default page;
+
+export const metadata = {
+  title: "Post",
+};

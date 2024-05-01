@@ -5,11 +5,16 @@ import { formatDistanceToNowStrict } from "date-fns";
 import TweetActions from "./tweet-actions";
 import { ITweet } from "./types";
 import TweetMedia from "./tweet-media";
-import TweetOptions from "./options/tweet-options";
+import TweetOwnerMenu from "./options/tweet-owner-menu";
 import { highlightHashtags } from "./highlight-hashtags";
+import { Pin } from "@/assets/pin";
+import {useSession} from 'next-auth/react'
+import TweetVisitorMenu from "./options/tweet-visitor-menu";
 
 const Tweet = ({ tweet, pinned }: { tweet: ITweet; pinned?: boolean }) => {
   const router = useRouter();
+
+  const {data:session}:any = useSession();
 
   const goToPost = (e: any) => {
     e.stopPropagation();
@@ -28,12 +33,24 @@ const Tweet = ({ tweet, pinned }: { tweet: ITweet; pinned?: boolean }) => {
     return formatDistanceToNowStrict(new Date(tweet.createdAt));
   }, [tweet?.createdAt]);
 
+  
   return (
     <>
       <div className="border-b-[1px] px-4 pt-2 pb-2  transition relative">
+        {pinned && (
+          <div className="flex gap-2 mb-1 pl-4">
+          <span className="w-4 h-4 dark:fill-neutral-500 fill-zinc-600">
+            <Pin /> 
+          </span>
+          <span className="text-xs text-light-gray">Pinned post</span>
+        </div>
+        )}
+
         <div className="flex flex-row gap-3 w-full  ">
           <Avatar onClick={goToProfile} className="h-9 w-9 cursor-pointer">
-            <AvatarImage src={tweet?.user?.profileImage || `/images/user_placeholder.png`} />
+            <AvatarImage
+              src={tweet?.user?.profileImage || `/images/user_placeholder.png`}
+            />
           </Avatar>
 
           <div className="w-full">
@@ -58,7 +75,12 @@ const Tweet = ({ tweet, pinned }: { tweet: ITweet; pinned?: boolean }) => {
                 </div>
 
                 <div className="">
-                  <TweetOptions />
+                  {tweet?.user?.id === session?.currentUser?.id ? (
+                    <TweetOwnerMenu tweet={tweet} />
+                  ) : (
+                    <TweetVisitorMenu tweet={tweet}/>
+                  )}
+                  
                 </div>
               </div>
             </div>

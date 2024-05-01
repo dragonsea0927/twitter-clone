@@ -8,6 +8,7 @@ export interface ITweet extends Post {
   media: IMedia[];
   comments: ITweet[];
   Bookmarks: IBookmark[];
+  pinned_by_users : IUser[];
   _count: {
     likes: number;
     comments: number;

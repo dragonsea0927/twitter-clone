@@ -14,3 +14,8 @@ const page = () => {
 }
 
 export default page
+
+export const metadata = {
+  title: "Messages",
+};
+

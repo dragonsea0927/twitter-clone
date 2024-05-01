@@ -70,6 +70,7 @@ export async function GET(request: Request) {
         likes: true,
         comments: true,
         media: true,
+        pinned_by_users:true,
         Bookmarks: {
           include: {
             user: true,
@@ -141,3 +142,49 @@ export async function POST(request: Request) {
     );
   }
 }
+
+export async function DELETE(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id") as string;
+  const userId = searchParams.get("userId") as string;
+  const pinnedParam  = searchParams.get("pinned")
+
+  const pinned: boolean = pinnedParam !== null ? pinnedParam === "true" : false;
+
+  try {
+
+    if(pinned){
+     await prisma.user.update({
+        where: {
+          id: userId, 
+        },
+        data: {
+          pinned_tweet_id: null,
+        },
+      })
+    }
+
+     await prisma.post.delete({
+      where: {
+        id,
+      },
+    })
+
+    return NextResponse.json({
+      message: "Tweet deleted successfully",
+    });
+    
+  } catch (error: any) {
+    console.error("Error deleting tweet:", error);
+    return NextResponse.json(
+      {
+        message: "Something went wrong",
+        error: error.message,
+      },
+      { status: error.errorCode || 500 },
+    );
+  }
+
+
+}
+

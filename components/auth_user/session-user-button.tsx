@@ -59,8 +59,7 @@ const SessionUserButton = () => {
               signOut({
                 callbackUrl: "/",
               })
-            }
-          >
+            }>
             <span className="text-sm">
               Log out{" "}
               {user?.username

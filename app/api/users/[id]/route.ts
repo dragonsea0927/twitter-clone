@@ -22,14 +22,18 @@ export async function GET(req: Request, route: { params: { id: string } }) {
         following: true,
         followersIds:true,
         followingIds:true,
+        pinned_tweet_id:true,
+        pinned_tweet:true,
         _count: {
           select: {
             followers: true,
             following: true,
           },
         },
-      },
+      },      
     });
+ 
+    
 
     return NextResponse.json(user, { status: 200 });
   } catch (error) {

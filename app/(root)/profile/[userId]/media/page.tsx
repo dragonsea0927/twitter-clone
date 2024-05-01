@@ -2,10 +2,31 @@ import ProfileHeader from "@/components/header/profile-header";
 import { getUserMetadata } from "@/components/profile/api/get-user-metadata";
 import Profile from "@/components/profile/profile";
 import ProfileMedia from "@/components/profile/profile-media";
+import { Metadata } from "next";
 import React from "react";
 
-const page = async ({ params }: { params: { userId: string } }) => {
 
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { userId: string };
+}): Promise<Metadata> {
+  const user = await getUserMetadata({
+    user_id: params.userId,
+    type: "tweets",
+  });
+
+  if (!user) {
+    return { title: "User not found" };
+  }
+
+  return {
+    title: `Media posts by ${user.name} (@${user.username})`,
+  };
+}
+
+const page = async ({ params }: { params: { userId: string } }) => {
   const user = await getUserMetadata({
     user_id: params.userId,
     type: "media",
@@ -20,7 +41,7 @@ const page = async ({ params }: { params: { userId: string } }) => {
         }`}
       />
       <Profile initialUser={user as any} />
-      <ProfileMedia />
+      <ProfileMedia user={user as any}/>
     </>
   );
 };

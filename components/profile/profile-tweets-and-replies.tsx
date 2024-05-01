@@ -5,9 +5,11 @@ import { useTweets } from "../tweets/hooks/use-tweets";
 import { InfiniteTweets } from "../tweets/infinite-tweet";
 import LoadingSpinner from "../elements/loading/loading-spinner";
 import TryAgain from "../elements/try-again";
+import PinnedTweet from "./pinned-tweet";
+import { IUser } from "./types";
+import NoTweetsFound from "./no-tweets-found";
 
-
-const ProfileTweetsAndReplies = () => {
+const ProfileTweetsAndReplies = ({user}:{user:IUser}) => {
   const pathname = usePathname();
   const id = pathname.split("/")[2] as string;
 
@@ -34,8 +36,12 @@ const ProfileTweetsAndReplies = () => {
     return <LoadingSpinner/>
   }
 
+  if (!tweets || !tweets.pages || tweets.pages.some(page => page.tweets.length === 0)) {
+    return <NoTweetsFound username={user.username} label={'replies'}/>
+  }
+
   return (<>
-  
+
         <InfiniteTweets 
             tweets={tweets}
             isSuccess={isSuccess}

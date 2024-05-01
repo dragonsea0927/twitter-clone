@@ -13,6 +13,9 @@ import LoadingSpinner from "../elements/loading/loading-spinner";
 import Link from "next/link";
 import { highlightHashtags } from "./highlight-hashtags";
 import TryAgain from "../elements/try-again";
+import TweetOwnerMenu from "./options/tweet-owner-menu";
+import TweetVisitorMenu from "./options/tweet-visitor-menu";
+import { useSession } from "next-auth/react";
 
 const TweetDetails = ({
   initialTweet,
@@ -21,6 +24,8 @@ const TweetDetails = ({
 }) => {
   const pathname = usePathname();
   const tweetId = pathname.split(`/`)[2];
+
+  const { data: session }:any = useSession();
 
   const {
     data: tweet,
@@ -33,7 +38,7 @@ const TweetDetails = ({
 
   if (isPending) return <LoadingSpinner />;
 
-  if (isError) return <TryAgain/>;
+  if (isError) return <TryAgain />;
 
   return (
     <>
@@ -46,7 +51,6 @@ const TweetDetails = ({
                   tweet?.user?.profileImage || `/images/user_placeholder.png`
                 }
               />
-              
             </Avatar>
 
             <Link className="w-full" href={`/profile/${tweet.user.id}`}>
@@ -59,10 +63,20 @@ const TweetDetails = ({
                 </span>
               </div>
             </Link>
+
+            <div className="">
+              {tweet?.user?.id === session?.currentUser?.id ? (
+                <TweetOwnerMenu tweet={tweet} />
+              ) : (
+                <TweetVisitorMenu tweet={tweet} />
+              )}
+            </div>
           </div>
 
           {tweet?.body && (
-            <div className="mt-1 text-sm line-clamp-4">{highlightHashtags(tweet?.body)}</div>
+            <div className="mt-1 text-sm line-clamp-4">
+              {highlightHashtags(tweet?.body)}
+            </div>
           )}
 
           {tweet?.media?.length > 0 && (
