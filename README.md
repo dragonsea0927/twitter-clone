@@ -11,7 +11,7 @@ This project is all about learning and growing as a full-stack developer. Join m
 - User can see following list of other users
 - User can Delete / Pin own post 
 - User can see other user's following / followers list 
-- Search any post by keyword
+- Search any tweet and user
 - Discover trending hashtags
 - Fully responsive
 - Change theme using shortcut `Alt + T`

@@ -17,6 +17,7 @@ export const InfiniteTweets = ({
   fetchNextPage: () => Promise<any> | void;
   hasNextPage: boolean | undefined;
 }) => {
+  
   const { ref } = useInView({
     onChange: (inView) => {
       inView && hasNextPage && fetchNextPage();

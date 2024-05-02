@@ -31,6 +31,7 @@ const CreateTweet = ({
   in_reply_to_tweet_id,
   inputId = "tweet-text",
 }: Props) => {
+  
   const { data: session }: any = useSession();
   const {data:user} = useUser({id: session?.currentUser?.id})
   const [text, setText] = useState("");

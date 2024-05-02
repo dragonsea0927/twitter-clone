@@ -6,7 +6,6 @@ import { Metadata } from "next";
 import React from "react";
 
 
-
 export async function generateMetadata({
   params,
 }: {
@@ -14,7 +13,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const user = await getUserMetadata({
     user_id: params.userId,
-    type: "tweets",
+    type: "media",
   });
 
   if (!user) {

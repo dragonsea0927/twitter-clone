@@ -12,7 +12,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const user = await getUserMetadata({
     user_id: params.userId,
-    type: "tweets",
+    type: "likes",
   });
 
   if (!user) {
