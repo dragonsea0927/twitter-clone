@@ -36,7 +36,7 @@ https://x.com/imDignesh/status/1784166713694773756
 - [SCSS](https://sass-lang.com/)
 
 
-### Installation 🛠️
+## Installation 🛠️
 
 ```bash
 git clone https://github.com/devdignesh/twitter-clone.git
@@ -45,7 +45,7 @@ npm i
 npm run dev
 ```
 
-### Environment Variables
+## Environment Variables
 
 Before running the development server, make sure to create `.env` file in the root directory of the project and add the required environment variables. You can use the example provided in the repository as a starting point.
 
@@ -53,7 +53,7 @@ Before running the development server, make sure to create `.env` file in the ro
 cp .env.example .env
 ```
 
-### Prisma
+## Prisma
 
 This project leverages the power of Prisma ORM for seamless database interaction. Prisma provides a modern database toolkit that simplifies database access, allowing for efficient querying, migrations, and schema management.
 
@@ -77,7 +77,37 @@ This command applies any pending migrations to the database, ensuring that the l
 - [Prisma Documentation](https://www.prisma.io/docs)
 - [Prisma GitHub Repository](https://github.com/prisma/prisma)
 
-### Contributing
+## Docker Setup
+This project includes Docker support for easier development and deployment.
+
+### Prerequisites
+
+- Docker installed on your machine.
+
+### Usage
+1. Clone the repository:
+```bash
+git clone https://github.com/devdignesh/twitter-clone.git
+cd twitter-clone
+```
+
+2. Build the Docker image:
+```bash
+docker build -t devdignesh/twitter_clone_nextjs:v1.0.0 .
+```
+
+3. Run the Docker container:
+```bash
+docker run -d -p 8000:3000 devdignesh/twitter_clone_nextjs:v1.0.0
+```
+4. Access the application in your browser
+```bash
+
+http://localhost:8000
+
+```
+
+## Contributing
 Welcome to contribute to our repository! We value your input and appreciate any contributions you make
 
 
