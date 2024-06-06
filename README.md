@@ -1,6 +1,9 @@
 # Twitter clone
 This project is all about learning and growing as a full-stack developer. Join me on this journey as I dive deep into building a social media platform inspired by Twitter, but with my own unique twist.
 
+## Demo video link 📽
+https://x.com/imDignesh/status/1784166713694773756
+
 ## Features ✨
 
 - Google / Github / Email (NextAuth) Authentication 
