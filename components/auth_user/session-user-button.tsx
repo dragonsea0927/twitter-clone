@@ -1,16 +1,17 @@
-import React  from "react"; 
+import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { signOut, useSession } from "next-auth/react";
-import { EllipsisWrapper } from "../elements/ellipsis-wrapper"; 
+import { EllipsisWrapper } from "../elements/ellipsis-wrapper";
 import { BsThreeDots } from "react-icons/bs";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { useUser } from "../profile/hooks/use-user";
 
 const SessionUserButton = () => {
   const { data: session }: any = useSession();
-  const {data:user} = useUser({ id: session.currentUser?.id });
- 
-  
+  const { data: user } = useUser({ id: session.currentUser?.id });
+
+  console.log("user", user);
+
   return (
     <div className="h-min mb-3 w-full">
       <Popover>
@@ -20,11 +21,11 @@ const SessionUserButton = () => {
               <Avatar className="relative aspect-square overflow-hidden rounded-full">
                 <AvatarImage
                   className="block size-full object-cover"
-                  src={
-                    user?.profileImage || "/images/user_placeholder.png"
-                  }
+                  src={user?.profileImage || "/images/user_placeholder.png"}
                 />
-                <AvatarFallback>{user?.username ? user.username[0] : ''}</AvatarFallback>
+                <AvatarFallback>
+                  {user?.username ? user.username[0] : ""}
+                </AvatarFallback>
               </Avatar>
 
               <div className="hidden flex-col justify-start items-start xxl:flex">
@@ -32,11 +33,7 @@ const SessionUserButton = () => {
                   className={`grid grid-flow-col text-milli font-semibold text-secondary-100
               hover:underline`}
                 >
-                  {user?.name && (
-                    <span className="truncate">
-                      {user?.name}
-                    </span>
-                  )}
+                  {user?.name && <span className="truncate">{user?.name}</span>}
                 </div>
 
                 <EllipsisWrapper>
@@ -59,12 +56,10 @@ const SessionUserButton = () => {
               signOut({
                 callbackUrl: "/",
               })
-            }>
+            }
+          >
             <span className="text-sm">
-              Log out{" "}
-              {user?.username
-                ? `@${user?.username}`
-                : user?.name}
+              Log out {user?.username ? `@${user?.username}` : user?.name}
             </span>
           </div>
         </PopoverContent>

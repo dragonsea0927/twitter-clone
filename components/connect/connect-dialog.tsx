@@ -23,7 +23,7 @@ const Connect = () => {
           <h2 className="text-lg py-3 px-4 font-semibold">Who to follow</h2>
 
           {people.map((person) => {
-            return <Person key={person.id} person={person} />;
+            return <Person key={person?.id} person={person} />;
           })}
 
           <Link

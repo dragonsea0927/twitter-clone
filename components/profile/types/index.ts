@@ -1,13 +1,19 @@
 import { IBookmark, ITweet } from "@/components/tweets/types";
-import { User, Like } from "@prisma/client";
+import { User as PrismaUser, Like } from "@prisma/client";
 
-export interface IUser extends User {
+export interface IUser extends PrismaUser {
+  id: string;
   posts: ITweet[];
-  followers: User[];
-  following: User[];
+  followers: PrismaUser[];
+  following: PrismaUser[];
   likes: ILike[];
   bookmarks: IBookmark[];
   pinned_tweet: ITweet;
+  profileImage: string;
+  username: string;
+  name: string;
+  bio: string;
+  location: string;
   _count?: {
     followers?: number;
     following?: number;

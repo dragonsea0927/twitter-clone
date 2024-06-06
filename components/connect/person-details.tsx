@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import FollowButton from "../elements/follow-button/follow-button";
 
-const PersonDetails = ({ author }: { author: IUser }) => {
+const PersonDetails = ({ author }: { author: IUser | null }) => {
   const { data: session }: any = useSession();
   const router = useRouter();
 
@@ -53,7 +53,7 @@ const PersonDetails = ({ author }: { author: IUser }) => {
                 ""
               ) : (
                 <FollowButton
-                  user_id={author?.id}
+                  user_id={author?.id || ''}
                   session_owner_id={session?.currentUser?.id}
                   isFollowing={isFollowing}
                 />

@@ -4,7 +4,7 @@ export const following = ({
   user,
   session_owner_id,
 }: {
-  user: IUser | undefined;
+  user: IUser | null;
   session_owner_id: string;
 }):boolean => {
   return user
