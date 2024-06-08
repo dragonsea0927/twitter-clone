@@ -1,0 +1,8 @@
+model Bookmarks {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  postId     String   @db.ObjectId
+  userId     String   @db.ObjectId
+  created_at DateTime @default(now())
+  tweet      Post     @relation("BookmarkPost", fields: [postId], references: [id], onDelete: Cascade)
+  user       User     @relation("BookmarkBy", fields: [userId], references: [id])
+}

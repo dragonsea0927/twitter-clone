@@ -1,0 +1,40 @@
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["prismaSchemaFolder"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String?
+  username     String?  @unique
+  bio          String?
+  email        String?  @unique
+  location     String?
+  coverImage   String?
+  profileImage String?
+  password     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  hasNewNotifications Boolean?
+  pinned_tweet_id     String?  @db.ObjectId
+
+  posts Post[] @relation("UserPosts")
+  Like  Like[] @relation("LikedBy")
+
+  userId       String? @db.ObjectId
+  pinned_tweet Post?   @relation("PinnedTweet", fields: [pinned_tweet_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  followers    User[]      @relation("Followers", fields: [followersIds], references: [id])
+  followersIds String[]    @db.ObjectId
+  following    User[]      @relation("Followers", fields: [followingIds], references: [id])
+  followingIds String[]    @db.ObjectId
+  Bookmarks    Bookmarks[] @relation("BookmarkBy")
+}

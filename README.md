@@ -91,14 +91,14 @@ git clone https://github.com/devdignesh/twitter-clone.git
 cd twitter-clone
 ```
 
-2. Build the Docker image:
+2. Pull the latest Docker image:
 ```bash
-docker build -t devdignesh/twitter_clone_nextjs:v1.0.0 .
+docker pull devdignesh/twitter_clone_nextjs:v1.1.0
 ```
 
 3. Run the Docker container:
 ```bash
-docker run -d -p 8000:3000 devdignesh/twitter_clone_nextjs:v1.0.0
+docker run -d -p 8000:3000 devdignesh/twitter_clone_nextjs:v1.1.0
 ```
 4. Access the application in your browser
 ```bash

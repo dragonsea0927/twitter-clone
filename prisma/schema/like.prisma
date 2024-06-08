@@ -1,0 +1,8 @@
+model Like {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  postId     String   @db.ObjectId
+  userId     String   @db.ObjectId
+  created_at DateTime @default(now())
+  tweet      Post     @relation("Like", fields: [postId], references: [id], onDelete: Cascade)
+  user       User     @relation("LikedBy", fields: [userId], references: [id])
+}

@@ -1,0 +1,7 @@
+model Hashtag {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  text       String
+  hashtag    String   @unique
+  score      Int      @default(1)
+  created_at DateTime @default(now())
+}
