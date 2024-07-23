@@ -15,6 +15,7 @@ import { FaCamera } from "react-icons/fa";
 import { Camera } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateProfile } from "./api/update-profile";
+import { AnimatePresence, motion } from "framer-motion";
 
 const EditProfileModal = ({
   user,
@@ -42,11 +43,10 @@ const EditProfileModal = ({
     }: {
       profile: IProfile;
       userId: string;
-    }) => { 
-      
+    }) => {
       return updateProfile(profile, userId);
     },
-    onSuccess: () => { 
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tweets"] });
     },
     onError: () => {
@@ -89,7 +89,10 @@ const EditProfileModal = ({
         <DialogContent className="p-0 pb-4 max-w-[600px] max-h-[90vh] h-fit rounded-2xl overflow-y-auto">
           <DialogHeader className="p-4 pb-0 flex flex-row justify-between text-center items-center gap-2">
             <div className="flex flex-row text-center items-center space-x-4">
-              <Cross2Icon className="h-5 w-5" onClick={() => closeModal()} />
+              <Cross2Icon
+                className="h-5 w-5 cursor-pointer"
+                onClick={() => closeModal()}
+              />
               <DialogTitle>Edit profile</DialogTitle>
             </div>
             <div>
@@ -161,7 +164,6 @@ const EditProfileModal = ({
               fill
               alt="avatar"
               className="bg-gray-200"
-               
               style={{ objectFit: "cover", borderRadius: "100%" }}
             />
 

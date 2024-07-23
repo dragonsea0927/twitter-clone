@@ -11,8 +11,7 @@ export const deleteTweet = async ({
 }) => {
   try {
 
-    console.log('MY pinned',pinned);
-    
+   
     const { data } = await axios.delete(
       `/api/tweets?id=${tweetId}&userId=${userId}&pinned=${pinned}`
     );

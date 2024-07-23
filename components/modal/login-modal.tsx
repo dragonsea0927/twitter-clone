@@ -23,6 +23,7 @@ import { Alert, AlertTitle, AlertDescription } from "../ui/alert";
 import axios from "axios";
 import { signIn } from "next-auth/react";
 import useRegisterModal from "@/components/modal/hooks/useRegisterModal";
+import { motion } from "framer-motion";
 
 const LoginModal = () => {
   const loginModal = useLoginModal();
@@ -44,6 +45,7 @@ const LoginModal = () => {
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
     try {
+ 
       const { data } = await axios.post("/api/auth/login", values);
 
       if (data.success) {
@@ -78,7 +80,7 @@ const LoginModal = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Email" {...field}    autoComplete="off"/>
+                  <Input placeholder="Email" {...field} autoComplete="off" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -120,13 +122,15 @@ const LoginModal = () => {
 
   return (
     <>
-      <Modal
-        title="Login"
-        isOpen={loginModal.isOpen}
-        onClose={loginModal.onClose}
-        body={bodyContent}
-        footer={footerContent}
-      />
+     
+        <Modal
+          title="Login"
+          isOpen={loginModal.isOpen}
+          onClose={loginModal.onClose}
+          body={bodyContent}
+          footer={footerContent}
+        />
+       
     </>
   );
 };

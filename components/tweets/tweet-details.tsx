@@ -16,6 +16,7 @@ import TryAgain from "../elements/try-again";
 import TweetOwnerMenu from "./options/tweet-owner-menu";
 import TweetVisitorMenu from "./options/tweet-visitor-menu";
 import { useSession } from "next-auth/react";
+import { motion } from "framer-motion";
 
 const TweetDetails = ({
   initialTweet,
@@ -25,7 +26,7 @@ const TweetDetails = ({
   const pathname = usePathname();
   const tweetId = pathname.split(`/`)[2];
 
-  const { data: session }:any = useSession();
+  const { data: session }: any = useSession();
 
   const {
     data: tweet,
@@ -42,58 +43,74 @@ const TweetDetails = ({
 
   return (
     <>
-      <div className="p-4 pb-0 transition relative">
-        <div className="flex flex-col space-y-4 w-full ">
-          <div className="flex flex-row gap-3">
-            <Avatar onClick={() => {}} className="h-9 w-9">
-              <AvatarImage
-                src={
-                  tweet?.user?.profileImage || `/images/user_placeholder.png`
-                }
-              />
-            </Avatar>
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.5,
+        }}
+      >
+        <div className="p-4 pb-0 transition relative">
+          <div className="flex flex-col space-y-4 w-full ">
+            <div className="flex flex-row gap-3">
+              <Avatar onClick={() => {}} className="h-9 w-9">
+                <AvatarImage
+                  src={
+                    tweet?.user?.profileImage || `/images/user_placeholder.png`
+                  }
+                />
+              </Avatar>
 
-            <Link className="w-full" href={`/profile/${tweet.user.id}`}>
-              <div className="flex flex-col ">
-                <span className="font-semibold text-sm cursor-pointer hover:underline">
-                  {tweet?.user?.name}
-                </span>
-                <span className=" cursor-pointer hidden md:block text-sm dark:text-zinc-500">
-                  @{tweet?.user?.username}
-                </span>
+              <Link className="w-full" href={`/profile/${tweet.user.id}`}>
+                <div className="flex flex-col ">
+                  <span className="font-semibold text-sm cursor-pointer hover:underline">
+                    {tweet?.user?.name}
+                  </span>
+                  <span className=" cursor-pointer hidden md:block text-sm dark:text-zinc-500">
+                    @{tweet?.user?.username}
+                  </span>
+                </div>
+              </Link>
+
+              <div className="">
+                {tweet?.user?.id === session?.currentUser?.id ? (
+                  <TweetOwnerMenu tweet={tweet} />
+                ) : (
+                  <TweetVisitorMenu tweet={tweet} />
+                )}
               </div>
-            </Link>
-
-            <div className="">
-              {tweet?.user?.id === session?.currentUser?.id ? (
-                <TweetOwnerMenu tweet={tweet} />
-              ) : (
-                <TweetVisitorMenu tweet={tweet} />
-              )}
             </div>
-          </div>
 
-          {tweet?.body && (
-            <div className="mt-1 text-sm line-clamp-4">
-              {highlightHashtags(tweet?.body)}
+            {tweet?.body && (
+              <div className="mt-1 text-sm line-clamp-4">
+                {highlightHashtags(tweet?.body)}
+              </div>
+            )}
+
+            {tweet?.media?.length > 0 && (
+              <TweetMedia media={tweet?.media} tweet_id={tweet?.id} />
+            )}
+
+            <TweetCreationDate date={tweet?.createdAt} link={tweet?.id} />
+
+            <div className="border-t-[1px] border-b-[1px] py-2 flex flex-row items-center mt-3 justify-around ">
+              <TweetActions tweet={tweet} />
             </div>
-          )}
-
-          {tweet?.media?.length > 0 && (
-            <TweetMedia media={tweet?.media} tweet_id={tweet?.id} />
-          )}
-
-          <TweetCreationDate date={tweet?.createdAt} link={tweet?.id} />
-
-          <div className="border-t-[1px] border-b-[1px] py-2 flex flex-row items-center mt-3 justify-around ">
-            <TweetActions tweet={tweet} />
           </div>
         </div>
-      </div>
-      <CreateTweetWrapper
-        in_reply_to_screen_name={tweet?.user?.username || ""}
-        in_reply_to_tweet_id={tweet?.id}
-      />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.6,
+        }}
+      >
+        <CreateTweetWrapper
+          in_reply_to_screen_name={tweet?.user?.username || ""}
+          in_reply_to_tweet_id={tweet?.id}
+        />
+      </motion.div>
 
       <Comments tweetId={tweet?.id} />
     </>

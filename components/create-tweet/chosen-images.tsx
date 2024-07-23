@@ -10,6 +10,7 @@ const ChosenImages = ({
   chosenImages: IChosenImages[];
   setChosenImages: (images: IChosenImages[]) => void;
 }) => {
+  
   const containerClass = `${
     chosenImages.length === 1
       ? "grid grid-cols-1 gap-3"

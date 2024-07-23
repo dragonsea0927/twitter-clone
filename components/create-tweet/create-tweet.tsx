@@ -18,6 +18,8 @@ import { LocationIcon } from "@/assets/location-icon";
 import EmojiButton from "./emoji-button";
 import { useUser } from "../profile/hooks/use-user";
 
+import { motion } from "framer-motion";
+
 interface Props {
   placeholder?: string | null;
   in_reply_to_screen_name?: string | null;
@@ -31,9 +33,8 @@ const CreateTweet = ({
   in_reply_to_tweet_id,
   inputId = "tweet-text",
 }: Props) => {
-  
   const { data: session }: any = useSession();
-  const {data:user} = useUser({id: session?.currentUser?.id})
+  const { data: user } = useUser({ id: session?.currentUser?.id });
   const [text, setText] = useState("");
 
   const [chosenImages, setChosenImages] = useState<IChosenImages[]>([]);
@@ -62,7 +63,9 @@ const CreateTweet = ({
   return (
     <div className="h-full flex overflow-auto border-b py-3 px-4 gap-3">
       <Avatar className="bg-center bg-cover h-9 w-9 ">
-        <AvatarImage src={user?.profileImage || `/images/user_placeholder.png`} />
+        <AvatarImage
+          src={user?.profileImage || `/images/user_placeholder.png`}
+        />
         <AvatarFallback>{session?.currentUser?.name[0]}</AvatarFallback>
       </Avatar>
 
@@ -98,7 +101,14 @@ const CreateTweet = ({
           )}
 
           <div className="flex flex-wrap items-center">
-            <div className="flex flex-1 translate-x-[-8px] flex-wrap items-center">
+            <motion.div
+              className="flex flex-1 translate-x-[-8px] flex-wrap items-center"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.5,
+              }}
+            >
               <Button
                 type="button"
                 variant={"outline"}
@@ -165,8 +175,7 @@ const CreateTweet = ({
               >
                 <LocationIcon />
               </Button>
-            </div>
-
+            </motion.div>
             <div className="flex items-center gap-2">
               <Button
                 type="button"

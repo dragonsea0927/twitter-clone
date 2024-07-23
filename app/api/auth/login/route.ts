@@ -1,16 +1,40 @@
 import { compare } from "bcrypt";
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prismadb"; 
+import prisma from "@/lib/prismadb";
+
+const demoUsers = [
+  {
+    email: process.env.NEXT_PUBLIC_DEMO_USER_ALEX_EMAIL,
+  },
+  {
+    email: process.env.NEXT_PUBLIC_DEMO_USER_TAYLOR_EMAIL,
+  },
+  {
+    email: process.env.NEXT_PUBLIC_DEMO_USER_MORGAN_EMAIL,
+  },
+];
 
 export async function POST(req: Request) {
   try {
     const { email, password } = await req.json();
 
-    const isExistingUser: any = await prisma.user.findUnique({
+
+    const demoUser: any = demoUsers.find((user) => user.email === email);
+
+    if (demoUser) {
+      return NextResponse.json({
+        success: true,
+        email: demoUser.email,
+        password: demoUser.password,
+      });
+    }
+
+    const isExistingUser:any = await prisma.user.findUnique({
       where: {
         email,
       },
     });
+
 
     if (!isExistingUser) {
       return NextResponse.json(

@@ -31,6 +31,7 @@ const Bookmarks = () => {
   if(isError) {
     return <TryAgain/>
   }
+
   return (
     <>
       {isSuccess && bookmarks?.pages[0]?.tweets?.length === 0 ? (

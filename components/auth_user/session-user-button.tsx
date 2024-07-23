@@ -10,8 +10,6 @@ const SessionUserButton = () => {
   const { data: session }: any = useSession();
   const { data: user } = useUser({ id: session.currentUser?.id });
 
-  console.log("user", user);
-
   return (
     <div className="h-min mb-3 w-full">
       <Popover>
@@ -49,9 +47,9 @@ const SessionUserButton = () => {
             </div>
           </div>
         </PopoverTrigger>
-        <PopoverContent>
+        <PopoverContent className="">
           <div
-            className=" cursor-pointer  hover:bg-opacity-10 transition"
+            className="cursor-pointer w-full   transition"
             onClick={() =>
               signOut({
                 callbackUrl: "/",

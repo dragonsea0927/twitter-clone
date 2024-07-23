@@ -11,6 +11,8 @@ import { UserJoinDate } from "./user-join-date";
 import Link from "next/link";
 import EditProfileModal from "./edit-profile-modal";
 import { MapPin } from "lucide-react";
+import {motion} from 'framer-motion';
+
 
 const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
   const { data: session }: any = useSession();
@@ -24,6 +26,8 @@ const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
 
   return (
     <>
+
+
       <div className="flex flex-col">
         <div className="aspect-[3/1]">
           {user?.coverImage ? (
@@ -121,12 +125,15 @@ const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
         </div>
 
         {isEditProfileModalOpen && (
+        
           <EditProfileModal
             user={user}
             closeModal={() => setIsEditProfileModalOpen(false)}
           />
+          
         )}
       </div>
+
     </>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import ModeToggle from "../ui/modeToggle";
 import useRegisterModal from "@/components/modal/hooks/useRegisterModal";
@@ -10,10 +10,14 @@ import useLoginModal from "@/components/modal/hooks/useLoginModal";
 import { signIn } from "next-auth/react";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { Form } from "../ui/form";
+import axios from "axios";
+import { IoPersonSharp } from "react-icons/io5";
 
 const Auth = () => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const [error, setError] = useState("");
 
   const onOpenRegisterModal = useCallback(() => {
     registerModal.onOpen();
@@ -23,11 +27,47 @@ const Auth = () => {
     loginModal.onOpen();
   }, [loginModal]);
 
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const button = event.currentTarget.querySelector(
+      'button[data-email][data-submit="true"]'
+    );
+
+    if (!button) {
+      console.log("No submit button found");
+      return;
+    }
+
+    const email = button.getAttribute("data-email");
+
+    try {
+      const { data } = await axios.post("/api/auth/login", { email });
+
+      if (data.success) {
+        signIn("credentials", { email: data.email, password: data.password });
+      }
+    } catch (error: any) {
+      if (error.response?.data?.error) {
+        console.log("Error=> ", error.response.data.error);
+      } else {
+        console.log("Error Something went wrong => ");
+      }
+    }
+  };
+
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const form = event.currentTarget.closest("form");
+    const buttons = form?.querySelectorAll("button[data-email]");
+
+    buttons?.forEach((button) => button.removeAttribute("data-submit"));
+    event.currentTarget.setAttribute("data-submit", "true");
+  };
+
   return (
     <>
       <RegisterModal />
       <LoginModal />
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center h-screen">
         <FaXTwitter className="justify-self-center hidden md:block h-2/3 w-2/3" />
 
@@ -81,17 +121,58 @@ const Auth = () => {
           </div>
 
           <div className="w-full max-w-[25rem]">
-            <h3 className="font-medium text-xl mb-4">
-              Already have an account?
-            </h3>
-            <Button
-              onClick={onOpenLoginModal}
-              variant={"outline"}
-              size={"csize"}
-              className="text-sky-500 border-sky-500"
-            >
-              Sign in
-            </Button>
+            <div>
+              <h3 className="font-medium text-xl mb-4">
+                Already have an account?
+              </h3>
+              <Button
+                onClick={onOpenLoginModal}
+                variant={"outline"}
+                size={"csize"}
+                className="text-sky-500 border-sky-500"
+              >
+                Sign in
+              </Button>
+            </div>
+          </div>
+          <div className="w-full max-w-[25rem]">
+            <form onSubmit={onSubmit}>
+              <div className="flex justify-evenly flex-row">
+                <div className="flex flex-col items-center space-y-2">
+                  <Button
+                    type="submit"
+                    className="h-16 w-16"
+                    data-email={process.env.NEXT_PUBLIC_DEMO_USER_ALEX_EMAIL}
+                    onClick={handleButtonClick}
+                  >
+                   <IoPersonSharp size={22}/>
+                  </Button>
+                  <span className="text-sm">Alex Smith</span>
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <Button
+                    type="submit"
+                    className="h-16 w-16"
+                    data-email={process.env.NEXT_PUBLIC_DEMO_USER_TAYLOR_EMAIL}
+                    onClick={handleButtonClick}
+                  >
+                     <IoPersonSharp size={22}/>
+                  </Button>
+                  <span className="text-sm">Taylor Johnson</span>
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <Button
+                    type="submit"
+                    className="h-16 w-16"
+                    data-email={process.env.NEXT_PUBLIC_DEMO_USER_MORGAN_EMAIL}
+                    onClick={handleButtonClick}
+                  >
+                    <IoPersonSharp size={22}/>
+                  </Button>
+                  <span className="text-sm">Morgan Brown</span>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
