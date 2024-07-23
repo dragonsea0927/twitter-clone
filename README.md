@@ -4,7 +4,7 @@
 This project is a fully functional Twitter clone built using A Next.js 14 with SASS, TailwindCSS, Framer-motion, TypeScript, Tanstack Query, MongoDB, Supabase, Prisma, NextAuth and Zustand. It showcases advanced frontend and backend capabilities.
 </p>
 
-<img width="1527" alt="formbricks-sneak" src="https://tsedxkflgndtkvrmgbug.supabase.co/storage/v1/object/public/images/project_preview.png?t=2024-07-23T09%3A05%3A46.142Z">
+<img width="1527" alt="twitter-clone-preview" src="https://tsedxkflgndtkvrmgbug.supabase.co/storage/v1/object/public/images/project_preview.png?t=2024-07-23T09%3A05%3A46.142Z">
 
 
 ## 📽 Demo video link 
