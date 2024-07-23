@@ -1,10 +1,16 @@
-# Twitter clone
-This project is all about learning and growing as a full-stack developer. Join me on this journey as I dive deep into building a social media platform inspired by Twitter, but with my own unique twist.
 
-## Demo video link 📽
+<h1 align="center">Twitter clone</h3>
+<p align="center">
+This project is a fully functional Twitter clone built using A Next.js 14 with SASS, TailwindCSS, Framer-motion, TypeScript, Tanstack Query, MongoDB, Supabase, Prisma, NextAuth and Zustand. It showcases advanced frontend and backend capabilities.
+</p>
+
+<img width="1527" alt="formbricks-sneak" src="https://tsedxkflgndtkvrmgbug.supabase.co/storage/v1/object/public/images/project_preview.png?t=2024-07-23T09%3A05%3A46.142Z">
+
+
+## 📽 Demo video link 
 https://x.com/imDignesh/status/1784166713694773756
 
-## Features ✨
+## ✨ Features 
 
 - Google / Github / Email (NextAuth) Authentication 
 - Edit profile with profile / banner images and other details
@@ -36,7 +42,7 @@ https://x.com/imDignesh/status/1784166713694773756
 - [SCSS](https://sass-lang.com/)
 
 
-## Installation 🛠️
+## 🛠️ Installation 
 
 ```bash
 git clone https://github.com/devdignesh/twitter-clone.git
